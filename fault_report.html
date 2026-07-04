@@ -286,7 +286,7 @@
 // Setup page (CONFIG.APPS_SCRIPT_URL). This page is opened on many
 // different phones via QR code, so it cannot rely on shared browser
 // storage — the Apps Script backend is the only thing both sides share.
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxxtUrPCw6DsLEyfEkDX_uiq2X52vM7wXqWFYR0erET-qMXx97KLGo_lIihoNKB4s0/exec";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/PASTE_DEPLOYMENT_ID/exec";
 // =========================================================================
 
 /* ================================================================
@@ -384,9 +384,16 @@ window.addEventListener('DOMContentLoaded', () => {
   const cmmsLoaded = loadAssetsFromCMMS();
   loadFaultMappingFromCMMS();
 
-  // Priority 2: If CMMS not connected, use hardcoded fallback
+  // Priority 2: If CMMS not connected, use hardcoded fallback (if available).
+  // Guarded with typeof-check: on a fresh device (e.g. any phone scanning the
+  // QR code) localStorage is empty, so this branch always runs. If the
+  // fallback generator isn't defined, DO NOT crash the whole init flow —
+  // just continue; loadAssetsData() below will fetch the real list from
+  // the Apps Script backend instead.
   if (!cmmsLoaded) {
-    generateAssetsFromImageTable();
+    if (typeof generateAssetsFromImageTable === 'function') {
+      generateAssetsFromImageTable();
+    }
   }
   // If fault mapping wasn't loaded from CMMS, use fallback
   if (Object.keys(faultMapping).length === 0) {
