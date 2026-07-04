@@ -1,0 +1,2116 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clinic 412 · CMMS V16</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+/* Embedded QRCode.js (soldair/node-qrcode v1.5.3) build/qrcode.js — bundled inline so QR generation works even when the browser/network blocks external CDNs. MIT license. */
+var QRCode=function(t){"use strict";var r,e=function(){return"function"==typeof Promise&&Promise.prototype&&Promise.prototype.then},n=[0,26,44,70,100,134,172,196,242,292,346,404,466,532,581,655,733,815,901,991,1085,1156,1258,1364,1474,1588,1706,1828,1921,2051,2185,2323,2465,2611,2761,2876,3034,3196,3362,3532,3706],o=function(t){if(!t)throw new Error('"version" cannot be null or undefined');if(t<1||t>40)throw new Error('"version" should be in range from 1 to 40');return 4*t+17},a=function(t){return n[t]},i=function(t){for(var r=0;0!==t;)r++,t>>>=1;return r},u=function(t){if("function"!=typeof t)throw new Error('"toSJISFunc" is not a valid function.');r=t},s=function(){return void 0!==r},f=function(t){return r(t)};function h(t,r){return t(r={exports:{}},r.exports),r.exports}var c=h((function(t,r){r.L={bit:1},r.M={bit:0},r.Q={bit:3},r.H={bit:2},r.isValid=function(t){return t&&void 0!==t.bit&&t.bit>=0&&t.bit<4},r.from=function(t,e){if(r.isValid(t))return t;try{return function(t){if("string"!=typeof t)throw new Error("Param is not a string");switch(t.toLowerCase()){case"l":case"low":return r.L;case"m":case"medium":return r.M;case"q":case"quartile":return r.Q;case"h":case"high":return r.H;default:throw new Error("Unknown EC Level: "+t)}}(t)}catch(t){return e}}}));function g(){this.buffer=[],this.length=0}c.L,c.M,c.Q,c.H,c.isValid,g.prototype={get:function(t){var r=Math.floor(t/8);return 1==(this.buffer[r]>>>7-t%8&1)},put:function(t,r){for(var e=0;e<r;e++)this.putBit(1==(t>>>r-e-1&1))},getLengthInBits:function(){return this.length},putBit:function(t){var r=Math.floor(this.length/8);this.buffer.length<=r&&this.buffer.push(0),t&&(this.buffer[r]|=128>>>this.length%8),this.length++}};var d=g;function l(t){if(!t||t<1)throw new Error("BitMatrix size must be defined and greater than 0");this.size=t,this.data=new Uint8Array(t*t),this.reservedBit=new Uint8Array(t*t)}l.prototype.set=function(t,r,e,n){var o=t*this.size+r;this.data[o]=e,n&&(this.reservedBit[o]=!0)},l.prototype.get=function(t,r){return this.data[t*this.size+r]},l.prototype.xor=function(t,r,e){this.data[t*this.size+r]^=e},l.prototype.isReserved=function(t,r){return this.reservedBit[t*this.size+r]};var v=l,p=h((function(t,r){var e=o;r.getRowColCoords=function(t){if(1===t)return[];for(var r=Math.floor(t/7)+2,n=e(t),o=145===n?26:2*Math.ceil((n-13)/(2*r-2)),a=[n-7],i=1;i<r-1;i++)a[i]=a[i-1]-o;return a.push(6),a.reverse()},r.getPositions=function(t){for(var e=[],n=r.getRowColCoords(t),o=n.length,a=0;a<o;a++)for(var i=0;i<o;i++)0===a&&0===i||0===a&&i===o-1||a===o-1&&0===i||e.push([n[a],n[i]]);return e}}));p.getRowColCoords,p.getPositions;var w=o,m=function(t){var r=w(t);return[[0,0],[r-7,0],[0,r-7]]},E=h((function(t,r){r.Patterns={PATTERN000:0,PATTERN001:1,PATTERN010:2,PATTERN011:3,PATTERN100:4,PATTERN101:5,PATTERN110:6,PATTERN111:7};var e=3,n=3,o=40,a=10;function i(t,e,n){switch(t){case r.Patterns.PATTERN000:return(e+n)%2==0;case r.Patterns.PATTERN001:return e%2==0;case r.Patterns.PATTERN010:return n%3==0;case r.Patterns.PATTERN011:return(e+n)%3==0;case r.Patterns.PATTERN100:return(Math.floor(e/2)+Math.floor(n/3))%2==0;case r.Patterns.PATTERN101:return e*n%2+e*n%3==0;case r.Patterns.PATTERN110:return(e*n%2+e*n%3)%2==0;case r.Patterns.PATTERN111:return(e*n%3+(e+n)%2)%2==0;default:throw new Error("bad maskPattern:"+t)}}r.isValid=function(t){return null!=t&&""!==t&&!isNaN(t)&&t>=0&&t<=7},r.from=function(t){return r.isValid(t)?parseInt(t,10):void 0},r.getPenaltyN1=function(t){for(var r=t.size,n=0,o=0,a=0,i=null,u=null,s=0;s<r;s++){o=a=0,i=u=null;for(var f=0;f<r;f++){var h=t.get(s,f);h===i?o++:(o>=5&&(n+=e+(o-5)),i=h,o=1),(h=t.get(f,s))===u?a++:(a>=5&&(n+=e+(a-5)),u=h,a=1)}o>=5&&(n+=e+(o-5)),a>=5&&(n+=e+(a-5))}return n},r.getPenaltyN2=function(t){for(var r=t.size,e=0,o=0;o<r-1;o++)for(var a=0;a<r-1;a++){var i=t.get(o,a)+t.get(o,a+1)+t.get(o+1,a)+t.get(o+1,a+1);4!==i&&0!==i||e++}return e*n},r.getPenaltyN3=function(t){for(var r=t.size,e=0,n=0,a=0,i=0;i<r;i++){n=a=0;for(var u=0;u<r;u++)n=n<<1&2047|t.get(i,u),u>=10&&(1488===n||93===n)&&e++,a=a<<1&2047|t.get(u,i),u>=10&&(1488===a||93===a)&&e++}return e*o},r.getPenaltyN4=function(t){for(var r=0,e=t.data.length,n=0;n<e;n++)r+=t.data[n];return Math.abs(Math.ceil(100*r/e/5)-10)*a},r.applyMask=function(t,r){for(var e=r.size,n=0;n<e;n++)for(var o=0;o<e;o++)r.isReserved(o,n)||r.xor(o,n,i(t,o,n))},r.getBestMask=function(t,e){for(var n=Object.keys(r.Patterns).length,o=0,a=1/0,i=0;i<n;i++){e(i),r.applyMask(i,t);var u=r.getPenaltyN1(t)+r.getPenaltyN2(t)+r.getPenaltyN3(t)+r.getPenaltyN4(t);r.applyMask(i,t),u<a&&(a=u,o=i)}return o}}));E.Patterns,E.isValid,E.getPenaltyN1,E.getPenaltyN2,E.getPenaltyN3,E.getPenaltyN4,E.applyMask,E.getBestMask;var y=[1,1,1,1,1,1,1,1,1,1,2,2,1,2,2,4,1,2,4,4,2,4,4,4,2,4,6,5,2,4,6,6,2,5,8,8,4,5,8,8,4,5,8,11,4,8,10,11,4,9,12,16,4,9,16,16,6,10,12,18,6,10,17,16,6,11,16,19,6,13,18,21,7,14,21,25,8,16,20,25,8,17,23,25,9,17,23,34,9,18,25,30,10,20,27,32,12,21,29,35,12,23,34,37,12,25,34,40,13,26,35,42,14,28,38,45,15,29,40,48,16,31,43,51,17,33,45,54,18,35,48,57,19,37,51,60,19,38,53,63,20,40,56,66,21,43,59,70,22,45,62,74,24,47,65,77,25,49,68,81],A=[7,10,13,17,10,16,22,28,15,26,36,44,20,36,52,64,26,48,72,88,36,64,96,112,40,72,108,130,48,88,132,156,60,110,160,192,72,130,192,224,80,150,224,264,96,176,260,308,104,198,288,352,120,216,320,384,132,240,360,432,144,280,408,480,168,308,448,532,180,338,504,588,196,364,546,650,224,416,600,700,224,442,644,750,252,476,690,816,270,504,750,900,300,560,810,960,312,588,870,1050,336,644,952,1110,360,700,1020,1200,390,728,1050,1260,420,784,1140,1350,450,812,1200,1440,480,868,1290,1530,510,924,1350,1620,540,980,1440,1710,570,1036,1530,1800,570,1064,1590,1890,600,1120,1680,1980,630,1204,1770,2100,660,1260,1860,2220,720,1316,1950,2310,750,1372,2040,2430],I=function(t,r){switch(r){case c.L:return y[4*(t-1)+0];case c.M:return y[4*(t-1)+1];case c.Q:return y[4*(t-1)+2];case c.H:return y[4*(t-1)+3];default:return}},M=function(t,r){switch(r){case c.L:return A[4*(t-1)+0];case c.M:return A[4*(t-1)+1];case c.Q:return A[4*(t-1)+2];case c.H:return A[4*(t-1)+3];default:return}},N=new Uint8Array(512),B=new Uint8Array(256);!function(){for(var t=1,r=0;r<255;r++)N[r]=t,B[t]=r,256&(t<<=1)&&(t^=285);for(var e=255;e<512;e++)N[e]=N[e-255]}();var C=function(t){return N[t]},P=function(t,r){return 0===t||0===r?0:N[B[t]+B[r]]},R=h((function(t,r){r.mul=function(t,r){for(var e=new Uint8Array(t.length+r.length-1),n=0;n<t.length;n++)for(var o=0;o<r.length;o++)e[n+o]^=P(t[n],r[o]);return e},r.mod=function(t,r){for(var e=new Uint8Array(t);e.length-r.length>=0;){for(var n=e[0],o=0;o<r.length;o++)e[o]^=P(r[o],n);for(var a=0;a<e.length&&0===e[a];)a++;e=e.slice(a)}return e},r.generateECPolynomial=function(t){for(var e=new Uint8Array([1]),n=0;n<t;n++)e=r.mul(e,new Uint8Array([1,C(n)]));return e}}));function T(t){this.genPoly=void 0,this.degree=t,this.degree&&this.initialize(this.degree)}R.mul,R.mod,R.generateECPolynomial,T.prototype.initialize=function(t){this.degree=t,this.genPoly=R.generateECPolynomial(this.degree)},T.prototype.encode=function(t){if(!this.genPoly)throw new Error("Encoder not initialized");var r=new Uint8Array(t.length+this.degree);r.set(t);var e=R.mod(r,this.genPoly),n=this.degree-e.length;if(n>0){var o=new Uint8Array(this.degree);return o.set(e,n),o}return e};var L=T,b=function(t){return!isNaN(t)&&t>=1&&t<=40},U="(?:[u3000-u303F]|[u3040-u309F]|[u30A0-u30FF]|[uFF00-uFFEF]|[u4E00-u9FAF]|[u2605-u2606]|[u2190-u2195]|u203B|[u2010u2015u2018u2019u2025u2026u201Cu201Du2225u2260]|[u0391-u0451]|[u00A7u00A8u00B1u00B4u00D7u00F7])+",x="(?:(?![A-Z0-9 $%*+\\-./:]|"+(U=U.replace(/u/g,"\\u"))+")(?:.|[\r\n]))+",k=new RegExp(U,"g"),F=new RegExp("[^A-Z0-9 $%*+\\-./:]+","g"),S=new RegExp(x,"g"),D=new RegExp("[0-9]+","g"),Y=new RegExp("[A-Z $%*+\\-./:]+","g"),_=new RegExp("^"+U+"$"),z=new RegExp("^[0-9]+$"),H=new RegExp("^[A-Z0-9 $%*+\\-./:]+$"),J={KANJI:k,BYTE_KANJI:F,BYTE:S,NUMERIC:D,ALPHANUMERIC:Y,testKanji:function(t){return _.test(t)},testNumeric:function(t){return z.test(t)},testAlphanumeric:function(t){return H.test(t)}},K=h((function(t,r){r.NUMERIC={id:"Numeric",bit:1,ccBits:[10,12,14]},r.ALPHANUMERIC={id:"Alphanumeric",bit:2,ccBits:[9,11,13]},r.BYTE={id:"Byte",bit:4,ccBits:[8,16,16]},r.KANJI={id:"Kanji",bit:8,ccBits:[8,10,12]},r.MIXED={bit:-1},r.getCharCountIndicator=function(t,r){if(!t.ccBits)throw new Error("Invalid mode: "+t);if(!b(r))throw new Error("Invalid version: "+r);return r>=1&&r<10?t.ccBits[0]:r<27?t.ccBits[1]:t.ccBits[2]},r.getBestModeForData=function(t){return J.testNumeric(t)?r.NUMERIC:J.testAlphanumeric(t)?r.ALPHANUMERIC:J.testKanji(t)?r.KANJI:r.BYTE},r.toString=function(t){if(t&&t.id)return t.id;throw new Error("Invalid mode")},r.isValid=function(t){return t&&t.bit&&t.ccBits},r.from=function(t,e){if(r.isValid(t))return t;try{return function(t){if("string"!=typeof t)throw new Error("Param is not a string");switch(t.toLowerCase()){case"numeric":return r.NUMERIC;case"alphanumeric":return r.ALPHANUMERIC;case"kanji":return r.KANJI;case"byte":return r.BYTE;default:throw new Error("Unknown mode: "+t)}}(t)}catch(t){return e}}}));K.NUMERIC,K.ALPHANUMERIC,K.BYTE,K.KANJI,K.MIXED,K.getCharCountIndicator,K.getBestModeForData,K.isValid;var O=h((function(t,r){var e=i(7973);function n(t,r){return K.getCharCountIndicator(t,r)+4}function o(t,r){var e=0;return t.forEach((function(t){var o=n(t.mode,r);e+=o+t.getBitsLength()})),e}r.from=function(t,r){return b(t)?parseInt(t,10):r},r.getCapacity=function(t,r,e){if(!b(t))throw new Error("Invalid QR Code version");void 0===e&&(e=K.BYTE);var o=8*(a(t)-M(t,r));if(e===K.MIXED)return o;var i=o-n(e,t);switch(e){case K.NUMERIC:return Math.floor(i/10*3);case K.ALPHANUMERIC:return Math.floor(i/11*2);case K.KANJI:return Math.floor(i/13);case K.BYTE:default:return Math.floor(i/8)}},r.getBestVersionForData=function(t,e){var n,a=c.from(e,c.M);if(Array.isArray(t)){if(t.length>1)return function(t,e){for(var n=1;n<=40;n++){if(o(t,n)<=r.getCapacity(n,e,K.MIXED))return n}}(t,a);if(0===t.length)return 1;n=t[0]}else n=t;return function(t,e,n){for(var o=1;o<=40;o++)if(e<=r.getCapacity(o,n,t))return o}(n.mode,n.getLength(),a)},r.getEncodedBits=function(t){if(!b(t)||t<7)throw new Error("Invalid QR Code version");for(var r=t<<12;i(r)-e>=0;)r^=7973<<i(r)-e;return t<<12|r}}));O.getCapacity,O.getBestVersionForData,O.getEncodedBits;var Q=i(1335),V=function(t,r){for(var e=t.bit<<3|r,n=e<<10;i(n)-Q>=0;)n^=1335<<i(n)-Q;return 21522^(e<<10|n)};function q(t){this.mode=K.NUMERIC,this.data=t.toString()}q.getBitsLength=function(t){return 10*Math.floor(t/3)+(t%3?t%3*3+1:0)},q.prototype.getLength=function(){return this.data.length},q.prototype.getBitsLength=function(){return q.getBitsLength(this.data.length)},q.prototype.write=function(t){var r,e,n;for(r=0;r+3<=this.data.length;r+=3)e=this.data.substr(r,3),n=parseInt(e,10),t.put(n,10);var o=this.data.length-r;o>0&&(e=this.data.substr(r),n=parseInt(e,10),t.put(n,3*o+1))};var j=q,$=["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"," ","$","%","*","+","-",".","/",":"];function X(t){this.mode=K.ALPHANUMERIC,this.data=t}X.getBitsLength=function(t){return 11*Math.floor(t/2)+t%2*6},X.prototype.getLength=function(){return this.data.length},X.prototype.getBitsLength=function(){return X.getBitsLength(this.data.length)},X.prototype.write=function(t){var r;for(r=0;r+2<=this.data.length;r+=2){var e=45*$.indexOf(this.data[r]);e+=$.indexOf(this.data[r+1]),t.put(e,11)}this.data.length%2&&t.put($.indexOf(this.data[r]),6)};var Z=X;function W(t){this.mode=K.BYTE,"string"==typeof t&&(t=function(t){for(var r=[],e=t.length,n=0;n<e;n++){var o=t.charCodeAt(n);if(o>=55296&&o<=56319&&e>n+1){var a=t.charCodeAt(n+1);a>=56320&&a<=57343&&(o=1024*(o-55296)+a-56320+65536,n+=1)}o<128?r.push(o):o<2048?(r.push(o>>6|192),r.push(63&o|128)):o<55296||o>=57344&&o<65536?(r.push(o>>12|224),r.push(o>>6&63|128),r.push(63&o|128)):o>=65536&&o<=1114111?(r.push(o>>18|240),r.push(o>>12&63|128),r.push(o>>6&63|128),r.push(63&o|128)):r.push(239,191,189)}return new Uint8Array(r).buffer}(t)),this.data=new Uint8Array(t)}W.getBitsLength=function(t){return 8*t},W.prototype.getLength=function(){return this.data.length},W.prototype.getBitsLength=function(){return W.getBitsLength(this.data.length)},W.prototype.write=function(t){for(var r=0,e=this.data.length;r<e;r++)t.put(this.data[r],8)};var G=W;function tt(t){this.mode=K.KANJI,this.data=t}tt.getBitsLength=function(t){return 13*t},tt.prototype.getLength=function(){return this.data.length},tt.prototype.getBitsLength=function(){return tt.getBitsLength(this.data.length)},tt.prototype.write=function(t){var r;for(r=0;r<this.data.length;r++){var e=f(this.data[r]);if(e>=33088&&e<=40956)e-=33088;else{if(!(e>=57408&&e<=60351))throw new Error("Invalid SJIS character: "+this.data[r]+"\nMake sure your charset is UTF-8");e-=49472}e=192*(e>>>8&255)+(255&e),t.put(e,13)}};var rt=tt,et=h((function(t){var r={single_source_shortest_paths:function(t,e,n){var o={},a={};a[e]=0;var i,u,s,f,h,c,g,d=r.PriorityQueue.make();for(d.push(e,0);!d.empty();)for(s in u=(i=d.pop()).value,f=i.cost,h=t[u]||{})h.hasOwnProperty(s)&&(c=f+h[s],g=a[s],(void 0===a[s]||g>c)&&(a[s]=c,d.push(s,c),o[s]=u));if(void 0!==n&&void 0===a[n]){var l=["Could not find a path from ",e," to ",n,"."].join("");throw new Error(l)}return o},extract_shortest_path_from_predecessor_list:function(t,r){for(var e=[],n=r;n;)e.push(n),t[n],n=t[n];return e.reverse(),e},find_path:function(t,e,n){var o=r.single_source_shortest_paths(t,e,n);return r.extract_shortest_path_from_predecessor_list(o,n)},PriorityQueue:{make:function(t){var e,n=r.PriorityQueue,o={};for(e in t=t||{},n)n.hasOwnProperty(e)&&(o[e]=n[e]);return o.queue=[],o.sorter=t.sorter||n.default_sorter,o},default_sorter:function(t,r){return t.cost-r.cost},push:function(t,r){var e={value:t,cost:r};this.queue.push(e),this.queue.sort(this.sorter)},pop:function(){return this.queue.shift()},empty:function(){return 0===this.queue.length}}};t.exports=r})),nt=h((function(t,r){function e(t){return unescape(encodeURIComponent(t)).length}function n(t,r,e){for(var n,o=[];null!==(n=t.exec(e));)o.push({data:n[0],index:n.index,mode:r,length:n[0].length});return o}function o(t){var r,e,o=n(J.NUMERIC,K.NUMERIC,t),a=n(J.ALPHANUMERIC,K.ALPHANUMERIC,t);return s()?(r=n(J.BYTE,K.BYTE,t),e=n(J.KANJI,K.KANJI,t)):(r=n(J.BYTE_KANJI,K.BYTE,t),e=[]),o.concat(a,r,e).sort((function(t,r){return t.index-r.index})).map((function(t){return{data:t.data,mode:t.mode,length:t.length}}))}function a(t,r){switch(r){case K.NUMERIC:return j.getBitsLength(t);case K.ALPHANUMERIC:return Z.getBitsLength(t);case K.KANJI:return rt.getBitsLength(t);case K.BYTE:return G.getBitsLength(t)}}function i(t,r){var e,n=K.getBestModeForData(t);if((e=K.from(r,n))!==K.BYTE&&e.bit<n.bit)throw new Error('"'+t+'" cannot be encoded with mode '+K.toString(e)+".\n Suggested mode is: "+K.toString(n));switch(e!==K.KANJI||s()||(e=K.BYTE),e){case K.NUMERIC:return new j(t);case K.ALPHANUMERIC:return new Z(t);case K.KANJI:return new rt(t);case K.BYTE:return new G(t)}}r.fromArray=function(t){return t.reduce((function(t,r){return"string"==typeof r?t.push(i(r,null)):r.data&&t.push(i(r.data,r.mode)),t}),[])},r.fromString=function(t,n){for(var i=function(t,r){for(var e={},n={start:{}},o=["start"],i=0;i<t.length;i++){for(var u=t[i],s=[],f=0;f<u.length;f++){var h=u[f],c=""+i+f;s.push(c),e[c]={node:h,lastCount:0},n[c]={};for(var g=0;g<o.length;g++){var d=o[g];e[d]&&e[d].node.mode===h.mode?(n[d][c]=a(e[d].lastCount+h.length,h.mode)-a(e[d].lastCount,h.mode),e[d].lastCount+=h.length):(e[d]&&(e[d].lastCount=h.length),n[d][c]=a(h.length,h.mode)+4+K.getCharCountIndicator(h.mode,r))}}o=s}for(var l=0;l<o.length;l++)n[o[l]].end=0;return{map:n,table:e}}(function(t){for(var r=[],n=0;n<t.length;n++){var o=t[n];switch(o.mode){case K.NUMERIC:r.push([o,{data:o.data,mode:K.ALPHANUMERIC,length:o.length},{data:o.data,mode:K.BYTE,length:o.length}]);break;case K.ALPHANUMERIC:r.push([o,{data:o.data,mode:K.BYTE,length:o.length}]);break;case K.KANJI:r.push([o,{data:o.data,mode:K.BYTE,length:e(o.data)}]);break;case K.BYTE:r.push([{data:o.data,mode:K.BYTE,length:e(o.data)}])}}return r}(o(t)),n),u=et.find_path(i.map,"start","end"),s=[],f=1;f<u.length-1;f++)s.push(i.table[u[f]].node);return r.fromArray(function(t){return t.reduce((function(t,r){var e=t.length-1>=0?t[t.length-1]:null;return e&&e.mode===r.mode?(t[t.length-1].data+=r.data,t):(t.push(r),t)}),[])}(s))},r.rawSplit=function(t){return r.fromArray(o(t))}}));function ot(t,r,e){var n,o,a=t.size,i=V(r,e);for(n=0;n<15;n++)o=1==(i>>n&1),n<6?t.set(n,8,o,!0):n<8?t.set(n+1,8,o,!0):t.set(a-15+n,8,o,!0),n<8?t.set(8,a-n-1,o,!0):n<9?t.set(8,15-n-1+1,o,!0):t.set(8,15-n-1,o,!0);t.set(a-8,8,1,!0)}function at(t,r,e){var n=new d;e.forEach((function(r){n.put(r.mode.bit,4),n.put(r.getLength(),K.getCharCountIndicator(r.mode,t)),r.write(n)}));var o=8*(a(t)-M(t,r));for(n.getLengthInBits()+4<=o&&n.put(0,4);n.getLengthInBits()%8!=0;)n.putBit(0);for(var i=(o-n.getLengthInBits())/8,u=0;u<i;u++)n.put(u%2?17:236,8);return function(t,r,e){for(var n=a(r),o=M(r,e),i=n-o,u=I(r,e),s=u-n%u,f=Math.floor(n/u),h=Math.floor(i/u),c=h+1,g=f-h,d=new L(g),l=0,v=new Array(u),p=new Array(u),w=0,m=new Uint8Array(t.buffer),E=0;E<u;E++){var y=E<s?h:c;v[E]=m.slice(l,l+y),p[E]=d.encode(v[E]),l+=y,w=Math.max(w,y)}var A,N,B=new Uint8Array(n),C=0;for(A=0;A<w;A++)for(N=0;N<u;N++)A<v[N].length&&(B[C++]=v[N][A]);for(A=0;A<g;A++)for(N=0;N<u;N++)B[C++]=p[N][A];return B}(n,t,r)}function it(t,r,e,n){var a;if(Array.isArray(t))a=nt.fromArray(t);else{if("string"!=typeof t)throw new Error("Invalid data");var i=r;if(!i){var u=nt.rawSplit(t);i=O.getBestVersionForData(u,e)}a=nt.fromString(t,i||40)}var s=O.getBestVersionForData(a,e);if(!s)throw new Error("The amount of data is too big to be stored in a QR Code");if(r){if(r<s)throw new Error("\nThe chosen QR Code version cannot contain this amount of data.\nMinimum version required to store current data is: "+s+".\n")}else r=s;var f=at(r,e,a),h=o(r),c=new v(h);return function(t,r){for(var e=t.size,n=m(r),o=0;o<n.length;o++)for(var a=n[o][0],i=n[o][1],u=-1;u<=7;u++)if(!(a+u<=-1||e<=a+u))for(var s=-1;s<=7;s++)i+s<=-1||e<=i+s||(u>=0&&u<=6&&(0===s||6===s)||s>=0&&s<=6&&(0===u||6===u)||u>=2&&u<=4&&s>=2&&s<=4?t.set(a+u,i+s,!0,!0):t.set(a+u,i+s,!1,!0))}(c,r),function(t){for(var r=t.size,e=8;e<r-8;e++){var n=e%2==0;t.set(e,6,n,!0),t.set(6,e,n,!0)}}(c),function(t,r){for(var e=p.getPositions(r),n=0;n<e.length;n++)for(var o=e[n][0],a=e[n][1],i=-2;i<=2;i++)for(var u=-2;u<=2;u++)-2===i||2===i||-2===u||2===u||0===i&&0===u?t.set(o+i,a+u,!0,!0):t.set(o+i,a+u,!1,!0)}(c,r),ot(c,e,0),r>=7&&function(t,r){for(var e,n,o,a=t.size,i=O.getEncodedBits(r),u=0;u<18;u++)e=Math.floor(u/3),n=u%3+a-8-3,o=1==(i>>u&1),t.set(e,n,o,!0),t.set(n,e,o,!0)}(c,r),function(t,r){for(var e=t.size,n=-1,o=e-1,a=7,i=0,u=e-1;u>0;u-=2)for(6===u&&u--;;){for(var s=0;s<2;s++)if(!t.isReserved(o,u-s)){var f=!1;i<r.length&&(f=1==(r[i]>>>a&1)),t.set(o,u-s,f),-1===--a&&(i++,a=7)}if((o+=n)<0||e<=o){o-=n,n=-n;break}}}(c,f),isNaN(n)&&(n=E.getBestMask(c,ot.bind(null,c,e))),E.applyMask(n,c),ot(c,e,n),{modules:c,version:r,errorCorrectionLevel:e,maskPattern:n,segments:a}}nt.fromArray,nt.fromString,nt.rawSplit;var ut=function(t,r){if(void 0===t||""===t)throw new Error("No input text");var e,n,o=c.M;return void 0!==r&&(o=c.from(r.errorCorrectionLevel,c.M),e=O.from(r.version),n=E.from(r.maskPattern),r.toSJISFunc&&u(r.toSJISFunc)),it(t,e,o,n)},st=h((function(t,r){function e(t){if("number"==typeof t&&(t=t.toString()),"string"!=typeof t)throw new Error("Color should be defined as hex string");var r=t.slice().replace("#","").split("");if(r.length<3||5===r.length||r.length>8)throw new Error("Invalid hex color: "+t);3!==r.length&&4!==r.length||(r=Array.prototype.concat.apply([],r.map((function(t){return[t,t]})))),6===r.length&&r.push("F","F");var e=parseInt(r.join(""),16);return{r:e>>24&255,g:e>>16&255,b:e>>8&255,a:255&e,hex:"#"+r.slice(0,6).join("")}}r.getOptions=function(t){t||(t={}),t.color||(t.color={});var r=void 0===t.margin||null===t.margin||t.margin<0?4:t.margin,n=t.width&&t.width>=21?t.width:void 0,o=t.scale||4;return{width:n,scale:n?4:o,margin:r,color:{dark:e(t.color.dark||"#000000ff"),light:e(t.color.light||"#ffffffff")},type:t.type,rendererOpts:t.rendererOpts||{}}},r.getScale=function(t,r){return r.width&&r.width>=t+2*r.margin?r.width/(t+2*r.margin):r.scale},r.getImageWidth=function(t,e){var n=r.getScale(t,e);return Math.floor((t+2*e.margin)*n)},r.qrToImageData=function(t,e,n){for(var o=e.modules.size,a=e.modules.data,i=r.getScale(o,n),u=Math.floor((o+2*n.margin)*i),s=n.margin*i,f=[n.color.light,n.color.dark],h=0;h<u;h++)for(var c=0;c<u;c++){var g=4*(h*u+c),d=n.color.light;if(h>=s&&c>=s&&h<u-s&&c<u-s)d=f[a[Math.floor((h-s)/i)*o+Math.floor((c-s)/i)]?1:0];t[g++]=d.r,t[g++]=d.g,t[g++]=d.b,t[g]=d.a}}}));st.getOptions,st.getScale,st.getImageWidth,st.qrToImageData;var ft=h((function(t,r){r.render=function(t,r,e){var n=e,o=r;void 0!==n||r&&r.getContext||(n=r,r=void 0),r||(o=function(){try{return document.createElement("canvas")}catch(t){throw new Error("You need to specify a canvas element")}}()),n=st.getOptions(n);var a=st.getImageWidth(t.modules.size,n),i=o.getContext("2d"),u=i.createImageData(a,a);return st.qrToImageData(u.data,t,n),function(t,r,e){t.clearRect(0,0,r.width,r.height),r.style||(r.style={}),r.height=e,r.width=e,r.style.height=e+"px",r.style.width=e+"px"}(i,o,a),i.putImageData(u,0,0),o},r.renderToDataURL=function(t,e,n){var o=n;void 0!==o||e&&e.getContext||(o=e,e=void 0),o||(o={});var a=r.render(t,e,o),i=o.type||"image/png",u=o.rendererOpts||{};return a.toDataURL(i,u.quality)}}));function ht(t,r){var e=t.a/255,n=r+'="'+t.hex+'"';return e<1?n+" "+r+'-opacity="'+e.toFixed(2).slice(1)+'"':n}function ct(t,r,e){var n=t+r;return void 0!==e&&(n+=" "+e),n}ft.render,ft.renderToDataURL;var gt=function(t,r,e){var n=st.getOptions(r),o=t.modules.size,a=t.modules.data,i=o+2*n.margin,u=n.color.light.a?"<path "+ht(n.color.light,"fill")+' d="M0 0h'+i+"v"+i+'H0z"/>':"",s="<path "+ht(n.color.dark,"stroke")+' d="'+function(t,r,e){for(var n="",o=0,a=!1,i=0,u=0;u<t.length;u++){var s=Math.floor(u%r),f=Math.floor(u/r);s||a||(a=!0),t[u]?(i++,u>0&&s>0&&t[u-1]||(n+=a?ct("M",s+e,.5+f+e):ct("m",o,0),o=0,a=!1),s+1<r&&t[u+1]||(n+=ct("h",i),i=0)):o++}return n}(a,o,n.margin)+'"/>',f='viewBox="0 0 '+i+" "+i+'"',h='<svg xmlns="http://www.w3.org/2000/svg" '+(n.width?'width="'+n.width+'" height="'+n.width+'" ':"")+f+' shape-rendering="crispEdges">'+u+s+"</svg>\n";return"function"==typeof e&&e(null,h),h};function dt(t,r,n,o,a){var i=[].slice.call(arguments,1),u=i.length,s="function"==typeof i[u-1];if(!s&&!e())throw new Error("Callback required as last argument");if(!s){if(u<1)throw new Error("Too few arguments provided");return 1===u?(n=r,r=o=void 0):2!==u||r.getContext||(o=n,n=r,r=void 0),new Promise((function(e,a){try{var i=ut(n,o);e(t(i,r,o))}catch(t){a(t)}}))}if(u<2)throw new Error("Too few arguments provided");2===u?(a=n,n=r,r=o=void 0):3===u&&(r.getContext&&void 0===a?(a=o,o=void 0):(a=o,o=n,n=r,r=void 0));try{var f=ut(n,o);a(null,t(f,r,o))}catch(t){a(t)}}var lt=ut,vt=dt.bind(null,ft.render),pt=dt.bind(null,ft.renderToDataURL),wt=dt.bind(null,(function(t,r,e){return gt(t,e)})),mt={create:lt,toCanvas:vt,toDataURL:pt,toString:wt};return t.create=lt,t.default=mt,t.toCanvas=vt,t.toDataURL=pt,t.toString=wt,Object.defineProperty(t,"__esModule",{value:!0}),t}({});
+
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-primary:#0A0F1E;--bg-secondary:#111827;--bg-card:#1A2537;--bg-card-hover:#22304A;
+  --accent:#00E5B8;--accent-dim:rgba(0,229,184,.12);--accent-glow:rgba(0,229,184,.25);
+  --warning:#FBBF24;--danger:#EF4444;--success:#34D399;--info:#60A5FA;
+  --text-primary:#F1F5F9;--text-secondary:#94A3B8;--text-muted:#64748B;
+  --border:#1E293B;--border-light:#334155;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg-primary);color:var(--text-primary);overflow:hidden;height:100vh}
+h1,h2,h3,h4,h5{font-family:'Space Grotesk',sans-serif}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg-secondary)}
+::-webkit-scrollbar-thumb{background:var(--border-light);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--text-muted)}
+
+/* Sidebar */
+.sidebar{width:260px;min-width:260px;background:linear-gradient(180deg,#0D1525 0%,#111D32 100%);border-right:1px solid var(--border);display:flex;flex-direction:column;transition:transform .3s ease;z-index:30}
+.sidebar .logo-area{padding:20px 20px 16px;border-bottom:1px solid var(--border)}
+.sidebar .logo-area h1{font-size:15px;font-weight:700;color:var(--accent);letter-spacing:.5px}
+.sidebar .logo-area p{font-size:11px;color:var(--text-muted);margin-top:2px}
+.nav-section{padding:12px 12px 4px;font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.2px}
+.nav-item{display:flex;align-items:center;gap:12px;padding:9px 16px;margin:2px 8px;border-radius:8px;cursor:pointer;transition:all .2s;font-size:13px;color:var(--text-secondary);position:relative}
+.nav-item:hover{background:rgba(255,255,255,.04);color:var(--text-primary)}
+.nav-item.active{background:var(--accent-dim);color:var(--accent);font-weight:600}
+.nav-item.active::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:20px;background:var(--accent);border-radius:0 3px 3px 0}
+.nav-item i{width:18px;text-align:center;font-size:14px}
+
+/* Main */
+.main-area{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.top-bar{height:56px;min-height:56px;background:var(--bg-secondary);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;gap:16px}
+.top-bar .breadcrumb{font-size:13px;color:var(--text-muted)}
+.top-bar .breadcrumb span{color:var(--text-primary);font-weight:600}
+.content{flex:1;overflow-y:auto;padding:24px;background:var(--bg-primary);position:relative}
+.content::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 0%,rgba(0,229,184,.03) 0%,transparent 60%),radial-gradient(ellipse at 80% 100%,rgba(0,229,184,.02) 0%,transparent 50%);pointer-events:none}
+
+/* Cards */
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px;position:relative;overflow:hidden}
+.card:hover{border-color:var(--border-light)}
+.kpi-card{position:relative;overflow:hidden}
+.kpi-card::after{content:'';position:absolute;top:-20px;right:-20px;width:80px;height:80px;border-radius:50%;opacity:.06}
+.kpi-card.teal::after{background:var(--accent)}.kpi-card.amber::after{background:var(--warning)}.kpi-card.red::after{background:var(--danger)}.kpi-card.blue::after{background:var(--info)}.kpi-card.green::after{background:var(--success)}
+.kpi-value{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:700;line-height:1}
+.kpi-label{font-size:12px;color:var(--text-muted);margin-top:6px;text-transform:uppercase;letter-spacing:.5px}
+
+/* Table */
+.data-table{width:100%;border-collapse:collapse;font-size:13px}
+.data-table thead th{padding:10px 12px;text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted);border-bottom:1px solid var(--border);background:var(--bg-secondary);position:sticky;top:0;z-index:2}
+.data-table tbody tr{border-bottom:1px solid var(--border);transition:background .15s}
+.data-table tbody tr:hover{background:rgba(255,255,255,.02)}
+.data-table tbody td{padding:10px 12px;color:var(--text-secondary);white-space:nowrap}
+.data-table tbody td:first-child{color:var(--text-primary);font-weight:500}
+
+/* Badges */
+.badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.badge::before{content:'';width:6px;height:6px;border-radius:50%}
+.badge-open{background:rgba(251,191,36,.12);color:#FBBF24}.badge-open::before{background:#FBBF24}
+.badge-inprogress{background:rgba(96,165,250,.12);color:#60A5FA}.badge-inprogress::before{background:#60A5FA}
+.badge-closed{background:rgba(52,211,153,.12);color:#34D399}.badge-closed::before{background:#34D399}
+.badge-cancelled{background:rgba(100,116,139,.12);color:#94A3B8}.badge-cancelled::before{background:#94A3B8}
+.badge-critical{background:rgba(239,68,68,.12);color:#EF4444}.badge-critical::before{background:#EF4444}
+.badge-high{background:rgba(249,115,22,.12);color:#F97316}.badge-high::before{background:#F97316}
+.badge-medium{background:rgba(251,191,36,.12);color:#FBBF24}.badge-medium::before{background:#FBBF24}
+.badge-low{background:rgba(52,211,153,.12);color:#34D399}.badge-low::before{background:#34D399}
+.badge-ok{background:rgba(52,211,153,.12);color:#34D399}.badge-ok::before{background:#34D399}
+.badge-due{background:rgba(251,191,36,.12);color:#FBBF24}.badge-due::before{background:#FBBF24}
+.badge-overdue{background:rgba(239,68,68,.12);color:#EF4444}.badge-overdue::before{background:#EF4444}
+.badge-active{background:rgba(52,211,153,.12);color:#34D399}.badge-active::before{background:#34D399}
+.badge-inactive{background:rgba(100,116,139,.12);color:#94A3B8}.badge-inactive::before{background:#94A3B8}
+.badge-out{background:rgba(239,68,68,.12);color:#EF4444}.badge-out::before{background:#EF4444}
+.badge-reorder{background:rgba(251,191,36,.12);color:#FBBF24}.badge-reorder::before{background:#FBBF24}
+.badge-pending{background:rgba(251,191,36,.12);color:#FBBF24}.badge-pending::before{background:#FBBF24}
+.badge-ordered{background:rgba(96,165,250,.12);color:#60A5FA}.badge-ordered::before{background:#60A5FA}
+.badge-delivered{background:rgba(52,211,153,.12);color:#34D399}.badge-delivered::before{background:#34D399}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:8px;font-size:13px;font-weight:600;border:none;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.btn-primary{background:var(--accent);color:#0A0F1E}.btn-primary:hover{background:#00CCa6;transform:translateY(-1px);box-shadow:0 4px 20px var(--accent-glow)}
+.btn-secondary{background:var(--bg-card);color:var(--text-primary);border:1px solid var(--border)}.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+.btn-danger{background:rgba(239,68,68,.12);color:#EF4444;border:1px solid rgba(239,68,68,.2)}.btn-danger:hover{background:rgba(239,68,68,.2)}
+.btn-sm{padding:5px 12px;font-size:12px}
+.btn-icon{padding:6px 8px;font-size:12px}
+
+/* Form */
+.form-group{display:flex;flex-direction:column;gap:4px}
+.form-label{font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.3px}
+.form-input,.form-select,.form-textarea{background:var(--bg-secondary);border:1px solid var(--border);border-radius:8px;padding:9px 12px;color:var(--text-primary);font-size:13px;font-family:'DM Sans',sans-serif;transition:border-color .2s;outline:none}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim)}
+.form-select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2394A3B8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
+.form-textarea{resize:vertical;min-height:60px}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);z-index:50;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
+.modal-overlay.show{opacity:1;pointer-events:all}
+.modal-box{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;width:90%;max-width:600px;max-height:85vh;overflow-y:auto;transform:scale(.95);transition:transform .2s}
+.modal-overlay.show .modal-box{transform:scale(1)}
+.modal-header{display:flex;align-items:center;justify-content:between;padding:20px 24px;border-bottom:1px solid var(--border)}
+.modal-body{padding:24px}
+.modal-footer{padding:16px 24px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
+
+/* Toast */
+.toast{padding:12px 20px;border-radius:10px;font-size:13px;font-weight:500;display:flex;align-items:center;gap:10px;animation:slideIn .3s ease;min-width:280px;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.toast-success{background:#065F46;color:#A7F3D0;border:1px solid #059669}
+.toast-error{background:#7F1D1D;color:#FCA5A5;border:1px solid #DC2626}
+.toast-info{background:#1E3A5F;color:#93C5FD;border:1px solid #2563EB}
+@keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
+
+/* Page transitions */
+.page-enter{animation:fadeUp .3s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* Chart containers */
+.chart-box{position:relative;height:220px}
+
+/* Mobile sidebar toggle */
+.sidebar-toggle{display:none;background:none;border:none;color:var(--text-secondary);font-size:20px;cursor:pointer}
+@media(max-width:768px){
+  .sidebar{position:fixed;left:0;top:0;bottom:0;transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .sidebar-toggle{display:block}
+  .content{padding:16px}
+}
+
+/* Search highlight */
+.highlight{background:rgba(0,229,184,.2);border-radius:2px;padding:0 2px}
+
+/* Rating stars */
+.rating-excellent{color:#34D399}.rating-strong{color:#60A5FA}.rating-average{color:#FBBF24}.rating-below{color:#F97316}.rating-critical{color:#EF4444}
+
+/* Animated gradient line */
+.gradient-line{height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);animation:shimmer 3s infinite}
+@keyframes shimmer{0%,100%{opacity:.3}50%{opacity:1}}
+
+/* Print styles for Mgmt Brief */
+.print-only{display:none}
+@media print{
+  /* Hide non-printable elements */
+  .sidebar,.top-bar,.no-print,.modal-overlay,.toast,.sidebar-toggle{display:none!important}
+  .print-only{display:block!important}
+
+  /* Page setup */
+  @page{margin:12mm 10mm;size:A4 landscape}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}
+  html,body{background:#fff!important;color:#111!important;overflow:visible!important;height:auto!important;font-size:11px}
+  h1,h2,h3,h4,h5{color:#111!important}
+
+  /* Content area */
+  .content{padding:0!important;overflow:visible!important;position:static!important}
+  .content::before{display:none!important}
+  .page-enter{animation:none!important}
+
+  /* Cards */
+  .card{break-inside:avoid;border:1px solid #ccc!important;background:#fff!important;box-shadow:none!important;padding:10px!important;margin-bottom:8px!important}
+  .card:hover{border-color:#ccc!important}
+
+  /* Grids */
+  .grid{display:grid!important}
+  .grid-cols-2{grid-template-columns:repeat(2,1fr)!important}
+  .grid-cols-3{grid-template-columns:repeat(3,1fr)!important}
+  .grid-cols-4{grid-template-columns:repeat(4,1fr)!important}
+  .grid-cols-5{grid-template-columns:repeat(5,1fr)!important}
+  .grid-cols-6{grid-template-columns:repeat(6,1fr)!important}
+  .gap-3,.gap-4{gap:6px!important}
+  .gap-6{gap:8px!important}
+  .mb-4,.mb-6{margin-bottom:6px!important}
+
+  /* KPI cards — keep accent borders */
+  .kpi-card{border:1px solid #ccc!important;background:#fff!important}
+  .kpi-card::after{display:none!important}
+  .kpi-value{font-size:20px!important}
+  .kpi-label{font-size:9px!important;color:#555!important}
+
+  /* Tables — allow wrapping, remove scroll containers */
+  .data-table{font-size:10px!important;width:100%!important}
+  .data-table thead th{background:#f3f3f3!important;color:#111!important;border-bottom:2px solid #999!important;-webkit-print-color-adjust:exact!important;padding:5px 6px!important;font-size:9px!important}
+  .data-table tbody tr{border-bottom:1px solid #ddd!important}
+  .data-table tbody td{color:#111!important;padding:4px 6px!important;white-space:normal!important;max-width:none!important;overflow:visible!important;text-overflow:clip!important}
+  .data-table tbody td:first-child{color:#111!important}
+  .data-table tbody td[style*="max-width"]{max-width:none!important}
+
+  /* Badges — flat text, keep color */
+  .badge{border:1px solid #999!important;padding:1px 6px!important;font-size:9px!important;background:#f5f5f5!important;color:#111!important}
+  .badge::before{display:none!important}
+  .badge-critical{border-color:#d00!important;color:#d00!important;font-weight:700}
+  .badge-high{border-color:#e65100!important;color:#e65100!important;font-weight:700}
+  .badge-medium{border-color:#f9a825!important;color:#9e7600!important}
+  .badge-low,.badge-ok,.badge-closed,.badge-active{border-color:#2e7d32!important;color:#2e7d32!important}
+  .badge-open,.badge-pending,.badge-due{border-color:#e65100!important;color:#e65100!important}
+  .badge-overdue,.badge-out{border-color:#d00!important;color:#d00!important;font-weight:700}
+  .badge-inprogress,.badge-ordered{border-color:#1565c0!important;color:#1565c0!important}
+  .badge-reorder{border-color:#e65100!important;color:#e65100!important}
+  .badge-cancelled,.badge-inactive{color:#666!important;border-color:#999!important}
+
+  /* Print header */
+  .print-header{text-align:center;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #111}
+  .print-header h1{font-size:18px!important;margin-bottom:2px}
+  .print-header p{font-size:10px!important;color:#555!important}
+
+  /* Text colors */
+  [style*="var(--text-muted)"],[style*="var(--text-secondary)"]{color:#555!important}
+  [style*="var(--accent)"]{color:#00796b!important}
+  [style*="var(--warning)"]{color:#e65100!important}
+  [style*="var(--danger)"]{color:#d00!important}
+  [style*="var(--success)"]{color:#2e7d32!important}
+  [style*="var(--info)"]{color:#1565c0!important}
+
+  /* Footer text */
+  [style*="text-align:center"]{color:#777!important}
+
+  /* Remove scroll containers */
+  [style*="overflow-x:auto"],[style*="overflow:hidden"],[style*="max-height"]{overflow:visible!important;max-height:none!important}
+
+  /* RTL text */
+  [style*="direction:rtl"]{direction:rtl!important;text-align:right!important}
+}
+</style>
+</head>
+<body>
+
+<!-- Toast Container -->
+<div id="toast-container" class="fixed top-4 right-4 z-[60] flex flex-col gap-2"></div>
+
+<!-- Modal -->
+<div id="modal-overlay" class="modal-overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box" id="modal-box"></div>
+</div>
+
+<!-- App Layout -->
+<div class="flex h-screen overflow-hidden">
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="logo-area">
+      <h1><i class="fa-solid fa-shield-halved mr-1"></i> CLINIC 412</h1>
+      <p>CMMS V16 · Future University in Egypt</p>
+    </div>
+    <div class="gradient-line"></div>
+    <nav class="flex-1 overflow-y-auto py-2" id="nav"></nav>
+    <div class="p-4 border-t border-[--border]">
+      <p style="font-size:10px;color:var(--text-muted);text-align:center">Faculty of Dentistry<br>&copy; 2025 FUE</p>
+    </div>
+  </aside>
+
+  <!-- Main Area -->
+  <div class="main-area">
+    <header class="top-bar">
+      <button class="sidebar-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')"><i class="fa-solid fa-bars"></i></button>
+      <div class="breadcrumb" id="breadcrumb">Home</div>
+      <div class="flex-1"></div>
+      <div style="font-size:11px;color:var(--text-muted);display:flex;align-items:center;gap:10px">
+        <span id="sync-status" style="cursor:pointer" onclick="pullFromServer(true)" title="Click to sync now">⏳ Connecting…</span>
+        <span id="clock"></span>
+      </div>
+    </header>
+    <div class="content" id="page-content"></div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   DATA STORE — All system data, loaded from localStorage or defaults
+   ============================================================ */
+const TODAY = new Date();
+const daysAgo = n => { const d = new Date(TODAY); d.setDate(d.getDate()-n); return d.toISOString().split('T')[0]; };
+const daysFromNow = n => { const d = new Date(TODAY); d.setDate(d.getDate()+n); return d.toISOString().split('T')[0]; };
+const fmt = n => n.toLocaleString('en-US');
+const fmtEgp = n => fmt(n) + ' EGP';
+
+// Navigation config
+const NAV = [
+  { section: 'Operations' },
+  { id:'dashboard', icon:'fa-gauge-high', label:'Dashboard' },
+  { id:'assets', icon:'fa-server', label:'Assets' },
+  { id:'faults', icon:'fa-ticket', label:'Faults' },
+  { id:'workorders', icon:'fa-clipboard-list', label:'Work Orders' },
+  { section: 'Maintenance' },
+  { id:'pm_schedule', icon:'fa-calendar-check', label:'PM Schedule' },
+  { id:'spareparts', icon:'fa-boxes-stacked', label:'Spare Parts' },
+  { id:'purchaseorders', icon:'fa-cart-shopping', label:'Purchase Orders' },
+  { section: 'Tools' },
+  { id:'search', icon:'fa-magnifying-glass', label:'Search' },
+  { id:'engineers', icon:'fa-user-gear', label:'Engineers' },
+  { id:'teams', icon:'fa-people-group', label:'Teams' },
+  { id:'qr_master', icon:'fa-qrcode', label:'QR Master' },
+  { id:'pm_library', icon:'fa-book', label:'PM Library' },
+  { section: 'Reports' },
+  { id:'mgmt_brief', icon:'fa-file-lines', label:'Mgmt Brief' },
+  { section: 'System' },
+  { id:'setup', icon:'fa-gear', label:'Setup' },
+];
+
+// Generate 43 assets
+function generateAssets(){
+  const assets = [];
+  const rooms = [['A',6],['B',7],['C',7],['D',7],['E',7],['F',6]];
+  let idx = 1;
+  rooms.forEach(([room, count]) => {
+    for(let i=1; i<=count; i++){
+      assets.push({
+        assetCode:`DEN-412-DU-${String(idx).padStart(3,'0')}`,
+        legacyCode:`${room}${i}`,
+        assetName:`Dental Unit ${room}${i}`,
+        category:'Dental Unit',
+        model:'Sirona C8+',
+        team:'MT-412',
+        status:'Active',
+        pmFrequency:180,
+        installDate: daysAgo(730),
+        lastPM: null
+      });
+      idx++;
+    }
+  });
+  assets.push({assetCode:'DEN-412-AUT-001',legacyCode:'AUT-A',assetName:'Autoclave A',category:'Autoclave',model:'Melag',team:'MT-412',status:'Active',pmFrequency:90,installDate:daysAgo(730),lastPM:null});
+  assets.push({assetCode:'DEN-412-AUT-002',legacyCode:'AUT-B',assetName:'Autoclave B',category:'Autoclave',model:'Melag',team:'MT-412',status:'Active',pmFrequency:90,installDate:daysAgo(730),lastPM:null});
+  assets.push({assetCode:'DEN-412-XR-001',legacyCode:'XR-1',assetName:'X-Ray Unit',category:'X-Ray',model:'Heliodent Plus',team:'MT-412',status:'Active',pmFrequency:180,installDate:daysAgo(730),lastPM:null});
+  return assets;
+}
+
+// PM Library (Arabic)
+const PM_LIBRARY = [
+  {deviceType:'وحدة الكرسي الطبي',code:'DEN-01',desc:'تسريب مياه أو انسداد في الصرف',priority:'طارئة',notes:'فحص الخرطوم + صامولة الاتصال'},
+  {deviceType:'وحدة الكرسي الطبي',code:'DEN-02',desc:'ضعف أو توقف الشفط والهواء',priority:'عالية',notes:'فحص الكمبريسور + الفلاتر'},
+  {deviceType:'وحدة الكرسي الطبي',code:'DEN-03',desc:'مشكلة في حركة الكرسي (معلق أو لا يستجيب)',priority:'متوسطة',notes:'فحص المحرك + الدواسة الهيدروليكية'},
+  {deviceType:'وحدة الكرسي الطبي',code:'DEN-04',desc:'عطل بكشاف الإضاءة (مطفي أو يرمش)',priority:'متوسطة',notes:'استبدال لمبة LED أو فحص التوصيل'},
+  {deviceType:'وحدة الكرسي الطبي',code:'DEN-05',desc:'أعطال القبضات والوصلات السريعة (التوربينات)',priority:'منخفضة',notes:'فحص وصلات الهواء + الشد'},
+  {deviceType:'وحدة الكرسي الطبي',code:'DEN-06',desc:'عطل شاشة التحكم (Touchpad) أو دواسة القدم',priority:'متوسطة',notes:'فحص الكابل + البوردة'},
+  {deviceType:'وحدة الكرسي الطبي',code:'DEN-07',desc:'انقطاع الكهرباء تماماً عن الجهاز',priority:'طارئة',notes:'فحص الفيوز + مصدر التغذية'},
+  {deviceType:'وحدة الكرسي الطبي',code:'DEN-08',desc:'تلف مادي وظاهري (جلد مفرود/حوامل مكسورة)',priority:'منخفضة',notes:'تقرير صيانة + طلب قطعة'},
+  {deviceType:'وحدة الكرسي الطبي',code:'DEN-09',desc:'أخرى (اكتب التفاصيل في وصف البلاغ)',priority:'منخفضة',notes:'راجع وصف البلاغ للتفاصيل'},
+  {deviceType:'الأوتوكلاف',code:'AUT-01',desc:'فشل دورة التعقيم',priority:'طارئة',notes:'فحص الحساسات + السجل الطبي'},
+  {deviceType:'الأوتوكلاف',code:'AUT-02',desc:'مشكلة في الحرارة',priority:'متوسطة',notes:'معايرة الترموستات'},
+  {deviceType:'الأوتوكلاف',code:'AUT-03',desc:'مشكلة في الضغط',priority:'متوسطة',notes:'فحص صمام الأمان'},
+  {deviceType:'الأوتوكلاف',code:'AUT-04',desc:'تسريب (مياه أو بخار)',priority:'عالية',notes:'فحص الحشية + الباب'},
+  {deviceType:'الأوتوكلاف',code:'AUT-05',desc:'انقطاع الكهرباء تماماً عن الجهاز',priority:'طارئة',notes:'فحص الفيوز + مصدر التغذية'},
+  {deviceType:'الأوتوكلاف',code:'AUT-06',desc:'أخرى (اكتب التفاصيل في وصف البلاغ)',priority:'منخفضة',notes:'راجع وصف البلاغ للتفاصيل'},
+  {deviceType:'وحدة الأشعة / RVG',code:'X-R-01',desc:'مشكلة في حساس الأشعة (RVG)',priority:'عالية',notes:'فحص كابل USB + تشغيل البرنامج'},
+  {deviceType:'وحدة الأشعة / RVG',code:'X-R-02',desc:'مشكلة في جهاز الأشعة نفسه',priority:'متوسطة',notes:'فحص مصدر الجهد العالي'},
+  {deviceType:'وحدة الأشعة / RVG',code:'X-R-03',desc:'مشكلة في الكمبيوتر أو شاشة العرض',priority:'متوسطة',notes:'فحص التوصيلات + إعادة تشغيل'},
+  {deviceType:'وحدة الأشعة / RVG',code:'X-R-04',desc:'مشكلة في الشبكة أو ربط ملفات الأشعة',priority:'متوسطة',notes:'فحص الـ IP + جدار الحماية'},
+  {deviceType:'وحدة الأشعة / RVG',code:'X-R-05',desc:'انقطاع الكهرباء تماماً عن الجهاز',priority:'طارئة',notes:'فحص الفيوز + UPS'},
+  {deviceType:'وحدة الأشعة / RVG',code:'X-R-06',desc:'مشكلة بالكمبيوتر (نظام التشغيل / العتاد)',priority:'متوسطة',notes:'فحص الهاردوير + التحديثات'},
+  {deviceType:'وحدة الأشعة / RVG',code:'X-R-07',desc:'برنامج الأشعة والملفات لا يفتح',priority:'متوسطة',notes:'إعادة تثبيت البرنامج أو الترخيص'},
+  {deviceType:'وحدة الأشعة / RVG',code:'X-R-08',desc:'أخرى (اكتب التفاصيل في وصف البلاغ)',priority:'منخفضة',notes:'راجع وصف البلاغ للتفاصيل'},
+];
+
+// Fault type mapping by category
+const FAULT_TYPES_BY_CATEGORY = {
+  'Dental Unit': PM_LIBRARY.filter(f=>f.deviceType==='وحدة الكرسي الطبي').map(f=>f.desc),
+  'Autoclave': PM_LIBRARY.filter(f=>f.deviceType==='الأوتوكلاف').map(f=>f.desc),
+  'X-Ray': PM_LIBRARY.filter(f=>f.deviceType==='وحدة الأشعة / RVG').map(f=>f.desc),
+};
+const ALL_FAULT_TYPES = PM_LIBRARY.map(f=>f.desc);
+
+// Map Arabic fault to English category
+function faultToCategory(ar){
+  if(ar.includes('تسريب مياه')||ar.includes('انسداد')) return 'Mechanical';
+  if(ar.includes('شفط')||ar.includes('هواء')) return 'Pneumatic';
+  if(ar.includes('حركة الكرسي')) return 'Hydraulic';
+  if(ar.includes('إضاءة')||ar.includes('كهرباء')||ar.includes('Touchpad')||ar.includes('دواسة')) return 'Electrical';
+  if(ar.includes('قبضات')||ar.includes('توربين')) return 'Mechanical';
+  if(ar.includes('تلف مادي')) return 'Cosmetic';
+  if(ar.includes('تعقيم')) return 'Software';
+  if(ar.includes('حرارة')||ar.includes('ضغط')||ar.includes('بخار')) return 'Mechanical';
+  if(ar.includes('حساس')||ar.includes('أشعة نفسه')) return 'Electrical';
+  if(ar.includes('كمبيوتر')||ar.includes('شاشة')||ar.includes('شبكة')||ar.includes('برنامج')) return 'Software';
+  return 'Other';
+}
+function faultToPriority(ar){
+  const item = PM_LIBRARY.find(f=>f.desc===ar);
+  if(!item) return 'Medium';
+  if(item.priority==='طارئة') return 'Critical';
+  if(item.priority==='عالية') return 'High';
+  if(item.priority==='متوسطة') return 'Medium';
+  return 'Low';
+}
+
+// Default sample data
+function getDefaultData(){
+  const assets = generateAssets();
+  // Set some PM dates
+  assets[0].lastPM = daysAgo(200); // DU-001 overdue
+  assets[4].lastPM = daysAgo(195); // DU-005 overdue
+  assets[11].lastPM = daysAgo(210); // DU-012 overdue
+  assets[19].lastPM = daysAgo(190); // DU-020 overdue
+  assets[32].lastPM = daysAgo(185); // DU-033 overdue
+  assets[10].lastPM = daysAgo(175); // DU-011 due
+  assets[16].lastPM = daysAgo(170); // DU-017 due
+  assets[23].lastPM = daysAgo(178); // DU-024 due
+  assets[40].lastPM = daysAgo(100); // AUT-001 overdue (90-day cycle)
+  assets[41].lastPM = daysAgo(85);  // AUT-002 due (90-day cycle)
+  assets[42].lastPM = daysAgo(60);  // XR-001 OK
+
+  const engineers = [
+    {code:'ENG-001',name:'Elsayed Esswi'},
+    {code:'ENG-002',name:'Ahmed Gamal'},
+  ];
+
+  const spareParts = [
+    {partName:'Handpiece Bearing',partNumber:'HP-BR-001',supplier:'Sirona',initialQty:12,qtyUsed:2,minQty:5,unitCost:450},
+    {partName:'Suction Filter',partNumber:'SF-202',supplier:'Cattani',initialQty:30,qtyUsed:3,minQty:10,unitCost:80},
+    {partName:'Light Bulb LED',partNumber:'LB-LED-12V',supplier:'Generic',initialQty:8,qtyUsed:1,minQty:5,unitCost:250},
+    {partName:'Air Hose',partNumber:'AH-3M',supplier:'Sirona',initialQty:4,qtyUsed:1,minQty:3,unitCost:320},
+    {partName:'O-Ring Kit',partNumber:'OR-KIT-A',supplier:'Generic',initialQty:25,qtyUsed:4,minQty:10,unitCost:60},
+    {partName:'Autoclave Gasket',partNumber:'AC-GS-MELAG',supplier:'Melag',initialQty:2,qtyUsed:1,minQty:2,unitCost:890},
+    {partName:'X-Ray Sensor Cable',partNumber:'XR-SC-HP',supplier:'Sirona',initialQty:1,qtyUsed:0,minQty:1,unitCost:3200},
+  ];
+
+  const faults = [
+    {ticketNo:'TKT-20250624-001',date:daysAgo(45),assetCode:'DEN-412-DU-001',faultType:'تسريب مياه أو انسداد في الصرف',description:'تسريب مياه من قاعدة الكرسي عند استخدام وحدة الأسنان',priority:'Critical',status:'Closed',engineer:'ENG-001',partNumber:'OR-KIT-A',qtyUsed:2,unitCost:60,poRef:null,assetName:'Dental Unit A1',faultCategory:'Mechanical',reporterName:'أحمد محمد',userCode:'20230001'},
+    {ticketNo:'TKT-20250624-002',date:daysAgo(38),assetCode:'DEN-412-AUT-001',faultType:'فشل دورة التعقيم',description:'دورة التعقيم لا تكتمل - رسالة خطأ على الشاشة',priority:'High',status:'Closed',engineer:'ENG-001',partNumber:null,qtyUsed:0,unitCost:0,poRef:null,assetName:'Autoclave A',faultCategory:'Software',reporterName:'سارة علي',userCode:'20230002'},
+    {ticketNo:'TKT-20250701-003',date:daysAgo(30),assetCode:'DEN-412-DU-005',faultType:'ضعف أو توقف الشفط والهواء',description:'قوة الشفط ضعيفة جداً - تؤثر على عمل الطبيب',priority:'Medium',status:'Closed',engineer:'ENG-002',partNumber:'SF-202',qtyUsed:3,unitCost:80,poRef:null,assetName:'Dental Unit A5',faultCategory:'Pneumatic',reporterName:'محمد حسن',userCode:'20230003'},
+    {ticketNo:'TKT-20250708-004',date:daysAgo(20),assetCode:'DEN-412-DU-012',faultType:'مشكلة في حركة الكرسي (معلق أو لا يستجيب)',description:'الكرسي معلق في وضع منخفض ولا يستجيب للدواسة',priority:'Medium',status:'In Progress',engineer:'ENG-001',partNumber:'AH-3M',qtyUsed:1,unitCost:320,poRef:null,assetName:'Dental Unit B6',faultCategory:'Hydraulic',reporterName:'فاطمة أحمد',userCode:'20230004'},
+    {ticketNo:'TKT-20250712-005',date:daysAgo(15),assetCode:'DEN-412-XR-001',faultType:'مشكلة في حساس الأشعة (RVG)',description:'حساس RVG لا يعطي صورة واضحة - تشويش',priority:'High',status:'In Progress',engineer:'ENG-002',partNumber:null,qtyUsed:0,unitCost:0,poRef:null,assetName:'X-Ray Unit',faultCategory:'Electrical',reporterName:'خالد إبراهيم',userCode:'20230005'},
+    {ticketNo:'TKT-20250718-006',date:daysAgo(8),assetCode:'DEN-412-DU-020',faultType:'عطل بكشاف الإضاءة (مطفي أو يرمش)',description:'كشاف الإضاءة مطفي تماماً',priority:'Low',status:'Open',engineer:null,partNumber:'LB-LED-12V',qtyUsed:1,unitCost:250,poRef:null,assetName:'Dental Unit D7',faultCategory:'Electrical',reporterName:'نورهان سعيد',userCode:'20230006'},
+    {ticketNo:'TKT-20250720-007',date:daysAgo(5),assetCode:'DEN-412-AUT-002',faultType:'مشكلة في الحرارة',description:'الحرارة لا تصل للمستوى المطلوب 134 درجة',priority:'Medium',status:'Open',engineer:null,partNumber:null,qtyUsed:0,unitCost:0,poRef:null,assetName:'Autoclave B',faultCategory:'Mechanical',reporterName:'ياسمين محمود',userCode:'20230007'},
+    {ticketNo:'TKT-20250722-008',date:daysAgo(3),assetCode:'DEN-412-DU-033',faultType:'انقطاع الكهرباء تماماً عن الجهاز',description:'الجهاز لا يعمل نهائياً - لا إضاءة ولا استجابة',priority:'Critical',status:'Open',engineer:'ENG-001',partNumber:null,qtyUsed:0,unitCost:0,poRef:null,assetName:'Dental Unit E7',faultCategory:'Electrical',reporterName:'عمر فاروق',userCode:'20230008'},
+    {ticketNo:'TKT-20250723-009',date:daysAgo(2),assetCode:'DEN-412-DU-008',faultType:'أعطال القبضات والوصلات السريعة (التوربينات)',description:'وصلات الهواء للقبضة مفكوطة - تسريب هواء',priority:'Low',status:'Open',engineer:null,partNumber:'HP-BR-001',qtyUsed:0,unitCost:450,poRef:null,assetName:'Dental Unit B2',faultCategory:'Mechanical',reporterName:'هند عبدالله',userCode:'20230009'},
+    {ticketNo:'TKT-20250724-010',date:daysAgo(1),assetCode:'DEN-412-DU-015',faultType:'عطل شاشة التحكم (Touchpad) أو دواسة القدم',description:'شاشة اللمس لا تستجيب لبعض الأوامر',priority:'Medium',status:'Open',engineer:null,partNumber:null,qtyUsed:0,unitCost:0,poRef:null,assetName:'Dental Unit C3',faultCategory:'Electrical',reporterName:'مريم طارق',userCode:'20230010'},
+  ];
+
+  const workOrders = [
+    {woNo:'WO-001',ticketNo:'TKT-20250624-001',assetCode:'DEN-412-DU-001',engineer:'ENG-001',actionTaken:'تم استبدال حشية O-Ring وإعادة تشديد الاتصالات',status:'Closed',closeDate:daysAgo(42),faultType:'تسريب مياه أو انسداد في الصرف',partNumber:'OR-KIT-A',qtyUsed:2,lineCost:120,poRef:null},
+    {woNo:'WO-002',ticketNo:'TKT-20250624-002',assetCode:'DEN-412-AUT-001',engineer:'ENG-001',actionTaken:'تم إعادة معايرة الحساسات وتنظيف غرفة التعقيم',status:'Closed',closeDate:daysAgo(35),faultType:'فشل دورة التعقيم',partNumber:null,qtyUsed:0,lineCost:0,poRef:null},
+    {woNo:'WO-003',ticketNo:'TKT-20250701-003',assetCode:'DEN-412-DU-005',engineer:'ENG-002',actionTaken:'تم تنظيف فلاتر الشفط واستبدال الفلتر المسدود',status:'Closed',closeDate:daysAgo(27),faultType:'ضعف أو توقف الشفط والهواء',partNumber:'SF-202',qtyUsed:3,lineCost:240,poRef:null},
+    {woNo:'WO-004',ticketNo:'TKT-20250708-004',assetCode:'DEN-412-DU-012',engineer:'ENG-001',actionTaken:'جاري فحص المحرك والدواسة الهيدروليكية - تم طلب خرطوم هواء',status:'In Progress',closeDate:null,faultType:'مشكلة في حركة الكرسي (معلق أو لا يستجيب)',partNumber:'AH-3M',qtyUsed:1,lineCost:320,poRef:null},
+    {woNo:'WO-005',ticketNo:'TKT-20250712-005',assetCode:'DEN-412-XR-001',engineer:'ENG-002',actionTaken:'جاري فحص كابل USB والحساس - قد يحتاج استبدال كابل',status:'In Progress',closeDate:null,faultType:'مشكلة في حساس الأشعة (RVG)',partNumber:null,qtyUsed:0,lineCost:0,poRef:null},
+  ];
+
+  const purchaseOrders = [
+    {poNumber:'PO-20250720-001',dateRaised:daysAgo(4),partNumber:'AC-GS-MELAG',partName:'Autoclave Gasket',supplier:'Melag',qtyOrdered:4,unitCost:890,totalCost:3560,poStatus:'Pending',expectedDelivery:daysFromNow(10),actualDelivery:null,faultTicketRef:null,notes:'Stock out - urgent for Autoclave A & B'},
+  ];
+
+  const teams = [{code:'MT-412',name:'Clinic 412 Maintenance Team'}];
+
+  return {assets, engineers, spareParts, faults, workOrders, purchaseOrders, teams, nextTicket:11, nextWO:6, nextPO:2};
+}
+
+// Load / Save state
+let DB;
+function loadDB(){
+  try {
+    const saved = localStorage.getItem('clinic412_cmms');
+    if(saved){ DB = JSON.parse(saved); }
+    else { DB = getDefaultData(); saveDB(); }
+  } catch(e){ DB = getDefaultData(); saveDB(); }
+}
+function saveDB(){ 
+  // Embed fault types mapping so fault_report.html can read it
+  DB.faultTypesByCategory = FAULT_TYPES_BY_CATEGORY;
+  localStorage.setItem('clinic412_cmms', JSON.stringify(DB)); 
+  pushToServer();
+}
+function resetDB(){ if(confirm('Reset all data to defaults? This cannot be undone.')){localStorage.removeItem('clinic412_cmms');loadDB();navigate('dashboard');toast('System reset to defaults','info');} }
+
+/* ============================================================
+   SERVER SYNC — Google Apps Script backend (shared across devices)
+   ============================================================ */
+const CONFIG = {
+  // Paste the /exec URL from your Apps Script deployment here (or set it
+  // once from the Setup page — it will be remembered on this browser).
+  // Must be the SAME URL used in fault_report.html.
+  APPS_SCRIPT_URL: localStorage.getItem('clinic412_gas_url') || 'https://script.google.com/macros/s/PASTE_DEPLOYMENT_ID/exec'
+};
+function setGasUrl(url){
+  CONFIG.APPS_SCRIPT_URL = url.trim();
+  localStorage.setItem('clinic412_gas_url', CONFIG.APPS_SCRIPT_URL);
+  pullFromServer(true);
+}
+
+let _syncing = false;
+let _pushTimer = null;
+
+function setSyncStatus(text){
+  const el = document.getElementById('sync-status');
+  if (el) el.textContent = text;
+}
+
+function isConfigured(){
+  return CONFIG.APPS_SCRIPT_URL && CONFIG.APPS_SCRIPT_URL.indexOf('PASTE_DEPLOYMENT_ID') === -1;
+}
+
+// Push the full local DB up to the server (debounced so rapid edits
+// don't fire dozens of requests).
+function pushToServer(){
+  if (!isConfigured()) { setSyncStatus('⚙️ Not connected — set Apps Script URL in Setup'); return; }
+  clearTimeout(_pushTimer);
+  _pushTimer = setTimeout(() => {
+    setSyncStatus('🔄 Saving…');
+    fetch(CONFIG.APPS_SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'saveDB', db: DB }),
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+    }).then(r => r.json()).then(j => {
+      if (j.status === 'success') setSyncStatus('✅ Synced ' + new Date().toLocaleTimeString());
+      else setSyncStatus('⚠️ Sync error');
+    }).catch(() => setSyncStatus('⚠️ Offline — saved locally only'));
+  }, 800);
+}
+
+// Pull the latest DB from the server (source of truth across devices).
+// If the server has no data yet, push our current local/demo data instead.
+function pullFromServer(manual){
+  if (!isConfigured()) { setSyncStatus('⚙️ Not connected — set Apps Script URL in Setup'); return; }
+  if (_syncing) return;
+  _syncing = true;
+  if (manual) setSyncStatus('🔄 Syncing…');
+  fetch(CONFIG.APPS_SCRIPT_URL + '?action=getDB')
+    .then(r => r.json())
+    .then(server => {
+      if (server && server.status === 'error') {
+        // Server empty/not initialized yet -> bootstrap it with local data
+        setSyncStatus('⬆️ Uploading initial data…');
+        pushToServer();
+        return;
+      }
+      const oldFaultCount = (DB.faults || []).length;
+      DB = server;
+      localStorage.setItem('clinic412_cmms', JSON.stringify(DB));
+      const newFaultCount = (DB.faults || []).length;
+      if (newFaultCount > oldFaultCount) {
+        const latest = DB.faults[DB.faults.length - 1];
+        if (latest) toast('New fault report: ' + latest.ticketNo + ' — ' + latest.assetCode, 'info');
+      }
+      setSyncStatus('✅ Synced ' + new Date().toLocaleTimeString());
+      navigate(currentPage);
+      buildNav();
+    })
+    .catch(() => setSyncStatus('⚠️ Offline — showing local data'))
+    .finally(() => { _syncing = false; });
+}
+function saveSetting(key,value){ if(!DB.settings) DB.settings={}; DB.settings[key]=value; saveDB(); toast('Setting saved'); }
+
+/* ============================================================
+   UTILITY FUNCTIONS
+   ============================================================ */
+function toast(msg, type='success'){
+  const c = document.getElementById('toast-container');
+  const t = document.createElement('div');
+  t.className = `toast toast-${type}`;
+  t.innerHTML = `<i class="fa-solid ${type==='success'?'fa-check-circle':type==='error'?'fa-exclamation-circle':'fa-info-circle'}"></i>${msg}`;
+  c.appendChild(t);
+  setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(100%)';t.style.transition='all .3s';setTimeout(()=>t.remove(),300)},3000);
+}
+
+function openModal(title, bodyHTML, footerHTML=''){
+  const box = document.getElementById('modal-box');
+  box.innerHTML = `
+    <div class="modal-header"><h3 style="font-size:16px;font-weight:700;flex:1">${title}</h3><button onclick="closeModal()" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:18px"><i class="fa-solid fa-xmark"></i></button></div>
+    <div class="modal-body">${bodyHTML}</div>
+    ${footerHTML?`<div class="modal-footer">${footerHTML}</div>`:''}`;
+  document.getElementById('modal-overlay').classList.add('show');
+}
+function closeModal(){ document.getElementById('modal-overlay').classList.remove('show'); }
+
+function badge(text, type){
+  const cls = `badge badge-${type.toLowerCase().replace(/\s/g,'')}`;
+  return `<span class="${cls}">${text}</span>`;
+}
+
+function getAsset(code){ return DB.assets.find(a=>a.assetCode===code); }
+function getEngineer(code){ const e = DB.engineers.find(e=>e.code===code); return e?e.name:'—'; }
+function getPartCost(pn){ const p = DB.spareParts.find(s=>s.partNumber===pn); return p?p.unitCost:0; }
+
+function pmStatus(lastPM, freq){
+  if(!lastPM) return {status:'OK',daysLeft:freq,nextPM:null};
+  const last = new Date(lastPM); const next = new Date(last); next.setDate(next.getDate()+freq);
+  const diff = Math.ceil((next - TODAY)/(1000*60*60*24));
+  if(diff < 0) return {status:'Overdue',daysLeft:diff,nextPM:next.toISOString().split('T')[0]};
+  if(diff <= 14) return {status:'Due',daysLeft:diff,nextPM:next.toISOString().split('T')[0]};
+  return {status:'OK',daysLeft:diff,nextPM:next.toISOString().split('T')[0]};
+}
+
+function stockStatus(part){
+  const avail = part.initialQty - part.qtyUsed;
+  if(avail <= 0) return 'Out';
+  if(avail <= part.minQty) return 'Reorder';
+  return 'OK';
+}
+function partAvailable(pn){ const p = DB.spareParts.find(s=>s.partNumber===pn); return p?p.initialQty-p.qtyUsed:0; }
+
+function daysBetween(d1,d2){ return Math.ceil((new Date(d2)-new Date(d1))/(1000*60*60*24)); }
+
+/* ============================================================
+   NAVIGATION & ROUTING
+   ============================================================ */
+let currentPage = 'dashboard';
+let chartInstances = [];
+
+function buildNav(){
+  const nav = document.getElementById('nav');
+  nav.innerHTML = NAV.map(item => {
+    if(item.section) return `<div class="nav-section">${item.section}</div>`;
+    return `<div class="nav-item ${currentPage===item.id?'active':''}" data-page="${item.id}"><i class="fa-solid ${item.icon}"></i>${item.label}</div>`;
+  }).join('');
+  nav.querySelectorAll('.nav-item').forEach(el => {
+    el.addEventListener('click', ()=>{
+      navigate(el.dataset.page);
+      document.getElementById('sidebar').classList.remove('open');
+    });
+  });
+}
+
+function navigate(page){
+  currentPage = page;
+  chartInstances.forEach(c=>c.destroy());
+  chartInstances = [];
+  buildNav();
+  const label = NAV.find(n=>n.id===page);
+  document.getElementById('breadcrumb').innerHTML = `<span>${label?label.label:page}</span>`;
+  const content = document.getElementById('page-content');
+  content.innerHTML = '<div class="page-enter">' + renderPage(page) + '</div>';
+  attachPageEvents(page);
+  if(page==='dashboard') initDashboardCharts();
+}
+
+function renderPage(page){
+  switch(page){
+    case 'dashboard': return renderDashboard();
+    case 'assets': return renderAssets();
+    case 'faults': return renderFaults();
+    case 'workorders': return renderWorkOrders();
+    case 'pm_schedule': return renderPMSchedule();
+    case 'spareparts': return renderSpareParts();
+    case 'purchaseorders': return renderPurchaseOrders();
+    case 'search': return renderSearch();
+    case 'engineers': return renderEngineers();
+    case 'teams': return renderTeams();
+    case 'qr_master': return renderQRMaster();
+    case 'pm_library': return renderPMLibrary();
+    case 'mgmt_brief': return renderMgmtBrief();
+    case 'setup': return renderSetup();
+    default: return '<p>Page not found</p>';
+  }
+}
+
+/* ============================================================
+   DASHBOARD
+   ============================================================ */
+function kpiStats(){
+  const faults = DB.faults;
+  const open = faults.filter(f=>f.status==='Open').length;
+  const inProg = faults.filter(f=>f.status==='In Progress').length;
+  const closed = faults.filter(f=>f.status==='Closed').length;
+  const highCrit = faults.filter(f=>f.priority==='High'||f.priority==='Critical').length;
+  const totalPartsCost = faults.reduce((s,f)=>s+(f.unitCost*f.qtyUsed||0),0);
+
+  const pmData = DB.assets.map(a=>pmStatus(a.lastPM, a.pmFrequency));
+  const pmOverdue = pmData.filter(p=>p.status==='Overdue').length;
+  const pmDue = pmData.filter(p=>p.status==='Due').length;
+
+  const woOpen = DB.workOrders.filter(w=>w.status!=='Closed').length;
+  const woClosed = DB.workOrders.filter(w=>w.status==='Closed').length;
+
+  const spValue = DB.spareParts.reduce((s,p)=>s+(p.initialQty-p.qtyUsed)*p.unitCost,0);
+  const spConsumed = DB.spareParts.reduce((s,p)=>s+p.qtyUsed*p.unitCost,0);
+  const spReorder = DB.spareParts.reduce((s,p)=>{
+    const avail = p.initialQty-p.qtyUsed;
+    if(avail<p.minQty) return s + Math.max(0, Math.ceil(p.minQty*1.5)-avail)*p.unitCost;
+    return s;
+  },0);
+
+  return {totalAssets:DB.assets.length, open, inProg, closed, highCrit, totalPartsCost, pmOverdue, pmDue, woOpen, woClosed, spValue, spConsumed, spReorder, totalFaults:faults.length};
+}
+
+function renderDashboard(){
+  const s = kpiStats();
+  const dentalCount = DB.assets.filter(a=>a.category==='Dental Unit').length;
+  const autoclaveCount = DB.assets.filter(a=>a.category==='Autoclave').length;
+  const xrCount = DB.assets.filter(a=>a.category==='X-Ray').length;
+
+  return `
+  <div style="margin-bottom:24px">
+    <h2 style="font-size:24px;font-weight:700">Dashboard</h2>
+    <p style="color:var(--text-muted);font-size:13px;margin-top:4px">Clinic 412 Maintenance Overview — Real-time KPIs</p>
+  </div>
+
+  <!-- Top KPIs -->
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+    <div class="card kpi-card teal"><div class="kpi-value" style="color:var(--accent)">${s.totalAssets}</div><div class="kpi-label">Total Assets</div></div>
+    <div class="card kpi-card amber"><div class="kpi-value" style="color:var(--warning)">${s.open + s.inProg}</div><div class="kpi-label">Open Faults</div></div>
+    <div class="card kpi-card red"><div class="kpi-value" style="color:var(--danger)">${s.pmOverdue}</div><div class="kpi-label">PM Overdue</div></div>
+    <div class="card kpi-card blue"><div class="kpi-value" style="color:var(--info)">${s.woOpen}</div><div class="kpi-label">WO Open</div></div>
+  </div>
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+    <div class="card kpi-card green"><div class="kpi-value" style="color:var(--success)">${s.closed}</div><div class="kpi-label">Faults Closed</div></div>
+    <div class="card kpi-card red"><div class="kpi-value" style="color:var(--danger)">${s.highCrit}</div><div class="kpi-label">High / Critical</div></div>
+    <div class="card kpi-card amber"><div class="kpi-value" style="color:var(--warning)">${s.pmDue}</div><div class="kpi-label">PM Due</div></div>
+    <div class="card kpi-card green"><div class="kpi-value" style="color:var(--success)">${s.woClosed}</div><div class="kpi-label">WO Closed</div></div>
+  </div>
+
+  <!-- Equipment Breakdown -->
+  <div class="card mb-6">
+    <h3 style="font-size:14px;font-weight:700;margin-bottom:16px">Equipment Breakdown</h3>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="flex items-center gap-3 p-3 rounded-lg" style="background:var(--bg-secondary)">
+        <div style="width:40px;height:40px;border-radius:10px;background:rgba(0,229,184,.12);display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-tooth" style="color:var(--accent)"></i></div>
+        <div><div style="font-size:20px;font-weight:700">${dentalCount}</div><div style="font-size:11px;color:var(--text-muted)">Dental Units</div></div>
+      </div>
+      <div class="flex items-center gap-3 p-3 rounded-lg" style="background:var(--bg-secondary)">
+        <div style="width:40px;height:40px;border-radius:10px;background:rgba(251,191,36,.12);display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-shield-virus" style="color:var(--warning)"></i></div>
+        <div><div style="font-size:20px;font-weight:700">${autoclaveCount}</div><div style="font-size:11px;color:var(--text-muted)">Autoclaves</div></div>
+      </div>
+      <div class="flex items-center gap-3 p-3 rounded-lg" style="background:var(--bg-secondary)">
+        <div style="width:40px;height:40px;border-radius:10px;background:rgba(96,165,250,.12);display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-x-ray" style="color:var(--info)"></i></div>
+        <div><div style="font-size:20px;font-weight:700">${xrCount}</div><div style="font-size:11px;color:var(--text-muted)">X-Ray Units</div></div>
+      </div>
+      <div class="flex items-center gap-3 p-3 rounded-lg" style="background:var(--bg-secondary)">
+        <div style="width:40px;height:40px;border-radius:10px;background:rgba(167,139,250,.12);display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-user-gear" style="color:#A78BFA"></i></div>
+        <div><div style="font-size:20px;font-weight:700">${DB.engineers.filter(e=>e.name).length}</div><div style="font-size:11px;color:var(--text-muted)">Engineers</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+    <div class="card"><h3 style="font-size:14px;font-weight:700;margin-bottom:12px">Faults by Status</h3><div class="chart-box"><canvas id="chart-fault-status"></canvas></div></div>
+    <div class="card"><h3 style="font-size:14px;font-weight:700;margin-bottom:12px">PM Status</h3><div class="chart-box"><canvas id="chart-pm-status"></canvas></div></div>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+    <div class="card"><h3 style="font-size:14px;font-weight:700;margin-bottom:12px">Top Fault Types</h3><div class="chart-box"><canvas id="chart-fault-types"></canvas></div></div>
+    <div class="card"><h3 style="font-size:14px;font-weight:700;margin-bottom:12px">Faults by Category</h3><div class="chart-box"><canvas id="chart-fault-cat"></canvas></div></div>
+  </div>
+
+  <!-- Financials -->
+  <div class="card">
+    <h3 style="font-size:14px;font-weight:700;margin-bottom:16px">Spare Parts Cost Overview</h3>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="p-3 rounded-lg" style="background:var(--bg-secondary)"><div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">Inventory Value</div><div style="font-size:18px;font-weight:700;color:var(--accent)">${fmtEgp(s.spValue)}</div></div>
+      <div class="p-3 rounded-lg" style="background:var(--bg-secondary)"><div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">Parts Consumed</div><div style="font-size:18px;font-weight:700;color:var(--warning)">${fmtEgp(s.spConsumed)}</div></div>
+      <div class="p-3 rounded-lg" style="background:var(--bg-secondary)"><div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">Reorder Cost</div><div style="font-size:18px;font-weight:700;color:var(--danger)">${fmtEgp(s.spReorder)}</div></div>
+      <div class="p-3 rounded-lg" style="background:var(--bg-secondary)"><div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">Fault Line Cost</div><div style="font-size:18px;font-weight:700;color:var(--info)">${fmtEgp(s.totalPartsCost)}</div></div>
+    </div>
+  </div>`;
+}
+
+function initDashboardCharts(){
+  const s = kpiStats();
+  const chartOpts = {responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#94A3B8',font:{size:11},padding:12}}}};
+
+  // Faults by Status
+  const ctx1 = document.getElementById('chart-fault-status');
+  if(ctx1) chartInstances.push(new Chart(ctx1,{type:'doughnut',data:{labels:['Open','In Progress','Closed'],datasets:[{data:[s.open,s.inProg,s.closed],backgroundColor:['#FBBF24','#60A5FA','#34D399'],borderWidth:0}]},options:{...chartOpts,cutout:'65%'}}));
+
+  // PM Status
+  const pmData = DB.assets.map(a=>pmStatus(a.lastPM,a.pmFrequency));
+  const pmOk = pmData.filter(p=>p.status==='OK').length;
+  const pmDue = pmData.filter(p=>p.status==='Due').length;
+  const pmOv = pmData.filter(p=>p.status==='Overdue').length;
+  const ctx2 = document.getElementById('chart-pm-status');
+  if(ctx2) chartInstances.push(new Chart(ctx2,{type:'doughnut',data:{labels:['OK','Due','Overdue'],datasets:[{data:[pmOk,pmDue,pmOv],backgroundColor:['#34D399','#FBBF24','#EF4444'],borderWidth:0}]},options:{...chartOpts,cutout:'65%'}}));
+
+  // Fault Types
+  const typeCounts = {};
+  DB.faults.forEach(f=>{typeCounts[f.faultType] = (typeCounts[f.faultType]||0)+1;});
+  const sortedTypes = Object.entries(typeCounts).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  const ctx3 = document.getElementById('chart-fault-types');
+  if(ctx3) chartInstances.push(new Chart(ctx3,{type:'bar',data:{labels:sortedTypes.map(t=>t[0].substring(0,25)+'...'),datasets:[{data:sortedTypes.map(t=>t[1]),backgroundColor:'#00E5B8',borderRadius:4,barThickness:18}]},options:{...chartOpts,indexAxis:'y',scales:{x:{grid:{color:'rgba(255,255,255,.05)'},ticks:{color:'#94A3B8'}},y:{grid:{display:false},ticks:{color:'#94A3B8',font:{size:10}}}},plugins:{legend:{display:false}}}}));
+
+  // Fault Categories
+  const catCounts = {};
+  DB.faults.forEach(f=>{catCounts[f.faultCategory] = (catCounts[f.faultCategory]||0)+1;});
+  const ctx4 = document.getElementById('chart-fault-cat');
+  if(ctx4) chartInstances.push(new Chart(ctx4,{type:'doughnut',data:{labels:Object.keys(catCounts),datasets:[{data:Object.values(catCounts),backgroundColor:['#00E5B8','#60A5FA','#FBBF24','#F97316','#A78BFA','#94A3B8'],borderWidth:0}]},options:{...chartOpts,cutout:'55%'}}));
+}
+
+/* ============================================================
+   ASSETS
+   ============================================================ */
+function renderAssets(){
+  return `
+  <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+    <div><h2 style="font-size:24px;font-weight:700">Asset Register</h2><p style="color:var(--text-muted);font-size:13px;margin-top:4px">${DB.assets.length} equipment items</p></div>
+    <div class="flex gap-2 items-center flex-wrap">
+      <input type="text" id="asset-search" class="form-input" placeholder="Search assets..." style="width:220px" oninput="filterAssets()">
+      <select id="asset-cat-filter" class="form-select" style="width:150px" onchange="filterAssets()"><option value="">All Categories</option><option>Dental Unit</option><option>Autoclave</option><option>X-Ray</option></select>
+      <button class="btn btn-primary" onclick="openAssetModal()"><i class="fa-solid fa-plus"></i> Add Asset</button>
+    </div>
+  </div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <div style="overflow-x:auto;max-height:65vh;overflow-y:auto">
+      <table class="data-table" id="assets-table">
+        <thead><tr><th>Asset Code</th><th>Legacy</th><th>Asset Name</th><th>Category</th><th>Model</th><th>Team</th><th>Status</th><th class="no-print">QR</th><th>PM Freq</th><th>Last PM</th><th>PM Status</th><th class="no-print">Actions</th></tr></thead>
+        <tbody>${DB.assets.map((a,i)=>{const pm = pmStatus(a.lastPM,a.pmFrequency);return `<tr>
+          <td style="font-family:'Space Grotesk';font-size:12px">${a.assetCode}</td>
+          <td>${a.legacyCode}</td><td>${a.assetName}</td><td>${a.category}</td><td>${a.model}</td><td>${a.team}</td>
+          <td>${badge(a.status, a.status==='Active'?'active':'inactive')}</td><td class="no-print"><button class="btn btn-secondary btn-icon" title="View QR" onclick="viewQR(${i})"><i class="fa-solid fa-qrcode"></i></button></td><td>${a.pmFrequency}d</td><td>${a.lastPM||'\u2014'}</td>
+          <td>${badge(pm.status,'ok')}</td>
+          <td class="no-print"><button class="btn btn-secondary btn-sm btn-icon" onclick="openAssetModal('${a.assetCode}')" title="Edit"><i class="fa-solid fa-pen"></i></button> <button class="btn btn-danger btn-sm btn-icon" onclick="deleteAsset('${a.assetCode}')" title="Delete"><i class="fa-solid fa-trash"></i></button></td>
+        </tr>`;}).join('')}</tbody>
+      </table>
+    </div>
+  </div>`;
+}
+function filterAssets(){
+  const q = document.getElementById('asset-search').value.toLowerCase();
+  const cat = document.getElementById('asset-cat-filter').value;
+  document.querySelectorAll('#assets-table tbody tr').forEach(tr=>{
+    const text = tr.textContent.toLowerCase();
+    const matchQ = !q || text.includes(q);
+    const matchCat = !cat || text.includes(cat.toLowerCase());
+    tr.style.display = (matchQ && matchCat)?'':'none';
+  });
+}
+
+function openAssetModal(assetCode=null){
+  const a = assetCode ? DB.assets.find(x=>x.assetCode===assetCode) : null;
+  const isEdit = !!a;
+  const title = isEdit ? `Edit Asset ${a.assetCode}` : 'Add New Asset';
+  const teamOpts = DB.teams.map(t=>`<option value="${t.code}" ${a&&a.team===t.code?'selected':''}>${t.code} - ${t.name}</option>`).join('');
+
+  openModal(title, `
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="form-group"><label class="form-label">Asset Code</label><input type="text" class="form-input" id="a-code" value="${a?a.assetCode:''}" ${isEdit?'readonly':''} placeholder="e.g. DEN-412-DU-044"></div>
+      <div class="form-group"><label class="form-label">Legacy Code</label><input type="text" class="form-input" id="a-legacy" value="${a?a.legacyCode:''}" placeholder="e.g. A1"></div>
+      <div class="form-group"><label class="form-label">Asset Name</label><input type="text" class="form-input" id="a-name" value="${a?a.assetName:''}" placeholder="e.g. Dental Unit A1"></div>
+      <div class="form-group"><label class="form-label">Category</label><select class="form-select" id="a-cat"><option ${a&&a.category==='Dental Unit'?'selected':''}>Dental Unit</option><option ${a&&a.category==='Autoclave'?'selected':''}>Autoclave</option><option ${a&&a.category==='X-Ray'?'selected':''}>X-Ray</option></select></div>
+      <div class="form-group"><label class="form-label">Model</label><input type="text" class="form-input" id="a-model" value="${a?a.model:''}" placeholder="e.g. Sirona C8+"></div>
+      <div class="form-group"><label class="form-label">Team</label><select class="form-select" id="a-team"><option value="">Select...</option>${teamOpts}</select></div>
+      <div class="form-group"><label class="form-label">Status</label><select class="form-select" id="a-status"><option ${a&&a.status==='Active'?'selected':''}>Active</option><option ${a&&a.status==='Inactive'?'selected':''}>Inactive</option></select></div>
+      <div class="form-group"><label class="form-label">PM Frequency (days)</label><input type="number" class="form-input" id="a-pmfreq" min="1" value="${a?a.pmFrequency:180}"></div>
+      <div class="form-group"><label class="form-label">Install Date</label><input type="date" class="form-input" id="a-installdate" value="${a?a.installDate:daysAgo(0)}"></div>
+      <div class="form-group"><label class="form-label">Last PM Date</label><input type="date" class="form-input" id="a-lastpm" value="${a?a.lastPM||'':''}"></div>
+    </div>
+  `, `<button class="btn btn-secondary" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="saveAsset('${assetCode||''}')">${isEdit?'Update':'Add'} Asset</button>`);
+}
+
+function saveAsset(assetCode){
+  const code = document.getElementById('a-code').value.trim();
+  const legacyCode = document.getElementById('a-legacy').value.trim();
+  const assetName = document.getElementById('a-name').value.trim();
+  const category = document.getElementById('a-cat').value;
+  const model = document.getElementById('a-model').value.trim();
+  const team = document.getElementById('a-team').value;
+  const status = document.getElementById('a-status').value;
+  const pmFrequency = parseInt(document.getElementById('a-pmfreq').value)||180;
+  const installDate = document.getElementById('a-installdate').value;
+  const lastPM = document.getElementById('a-lastpm').value || null;
+
+  if(!code||!assetName||!category){toast('Please fill Asset Code, Name, and Category','error');return;}
+
+  if(assetCode){
+    const a = DB.assets.find(x=>x.assetCode===assetCode);
+    Object.assign(a,{assetCode:code,legacyCode,assetName,category,model,team,status,pmFrequency,installDate,lastPM});
+    toast('Asset updated');
+  } else {
+    if(DB.assets.find(x=>x.assetCode===code)){toast('Asset code already exists','error');return;}
+    DB.assets.push({assetCode:code,legacyCode,assetName,category,model,team,status,pmFrequency,installDate,lastPM});
+    toast('Asset added: '+code);
+  }
+  saveDB(); closeModal(); navigate('assets');
+}
+
+function deleteAsset(assetCode){
+  const faultRefs = DB.faults.filter(f=>f.assetCode===assetCode).length;
+  const woRefs = DB.workOrders.filter(w=>w.assetCode===assetCode).length;
+  const total = faultRefs + woRefs;
+  if(total > 0){
+    toast('Cannot delete: asset is used in '+total+' fault(s)/work order(s)','error');
+    return;
+  }
+  if(!confirm('Delete asset '+assetCode+'? This cannot be undone.')) return;
+  DB.assets = DB.assets.filter(a=>a.assetCode!==assetCode);
+  saveDB(); navigate('assets'); toast('Asset deleted');
+}
+
+
+/* ============================================================
+   FAULTS
+   ============================================================ */
+function renderFaults(){
+  return `
+  <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+    <div><h2 style="font-size:24px;font-weight:700">Fault Tickets</h2><p style="color:var(--text-muted);font-size:13px;margin-top:4px">${DB.faults.length} tickets logged</p></div>
+    <div class="flex gap-2 items-center flex-wrap">
+      <input type="text" id="fault-search" class="form-input" placeholder="Search tickets..." style="width:200px" oninput="filterFaults()">
+      <select id="fault-status-filter" class="form-select" style="width:140px" onchange="filterFaults()"><option value="">All Status</option><option>Open</option><option>In Progress</option><option>Closed</option><option>Cancelled</option></select>
+      <select id="fault-source-filter" class="form-select" style="width:130px" onchange="filterFaults()"><option value="">All Sources</option><option value="qr">QR Scan</option><option value="manual">Manual</option></select>
+      <select id="fault-pri-filter" class="form-select" style="width:140px" onchange="filterFaults()"><option value="">All Priority</option><option>Critical</option><option>High</option><option>Medium</option><option>Low</option></select>
+      <button class="btn btn-primary" onclick="openFaultModal()"><i class="fa-solid fa-plus"></i> New Ticket</button>
+    </div>
+  </div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <div style="overflow-x:auto;max-height:65vh;overflow-y:auto">
+      <table class="data-table" id="faults-table">
+        <thead><tr><th>Ticket</th><th>Date</th><th>Asset</th><th>Fault Type</th><th>Priority</th><th>Status</th><th>Engineer</th><th>Parts Cost</th><th>Actions</th></tr></thead>
+        <tbody>${DB.faults.map(f=>`<tr>
+          <td style="font-family:'Space Grotesk';font-size:12px">${f.ticketNo}${f.source==='qr'?' <i class="fa-solid fa-qrcode" style="color:var(--accent);font-size:10px" title="Submitted via QR scan"></i>':''}</td>
+          <td>${f.date}</td><td title="${f.assetName}">${f.assetCode}</td>
+          <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis">${f.faultType}</td>
+          <td>${badge(f.priority,f.priority.toLowerCase())}</td>
+          <td>${badge(f.status,f.status.toLowerCase().replace(' ',''))}</td>
+          <td>${getEngineer(f.engineer)}</td>
+          <td>${f.unitCost&&f.qtyUsed?fmtEgp(f.unitCost*f.qtyUsed):'—'}</td>
+          <td class="no-print"><button class="btn btn-secondary btn-sm btn-icon" onclick="openFaultModal('${f.ticketNo}')" title="Edit"><i class="fa-solid fa-pen"></i></button></td>
+        </tr>`).join('')}</tbody>
+      </table>
+    </div>
+  </div>`;
+}
+
+function filterFaults(){
+  const q = document.getElementById('fault-search').value.toLowerCase();
+  const st = document.getElementById('fault-status-filter').value;
+  const pr = document.getElementById('fault-pri-filter').value;
+  const src = document.getElementById('fault-source-filter').value;
+  document.querySelectorAll('#faults-table tbody tr').forEach(tr=>{
+    const text = tr.textContent.toLowerCase();
+    const matchQ = !q || text.includes(q);
+    const matchSt = !st || text.includes(st.toLowerCase());
+    const matchPr = !pr || text.includes(pr.toLowerCase());
+    const matchSrc = !src || (src === 'qr' ? tr.querySelector('.fa-qrcode') : !tr.querySelector('.fa-qrcode'));
+    tr.style.display = (matchQ&&matchSt&&matchPr&&matchSrc)?'':'none';
+  });
+}
+
+function openFaultModal(ticketNo=null){
+  const f = ticketNo ? DB.faults.find(x=>x.ticketNo===ticketNo) : null;
+  const isEdit = !!f;
+  const title = isEdit ? `Edit Ticket ${f.ticketNo}` : 'New Fault Ticket';
+  const assetOptions = DB.assets.map(a=>`<option value="${a.assetCode}" ${f&&f.assetCode===a.assetCode?'selected':''}>${a.assetCode} — ${a.assetName}</option>`).join('');
+  const engOptions = DB.engineers.filter(e=>e.name).map(e=>`<option value="${e.code}" ${f&&f.engineer===e.code?'selected':''}>${e.name}</option>`).join('');
+  const partOptions = DB.spareParts.map(p=>`<option value="${p.partNumber}" ${f&&f.partNumber===p.partNumber?'selected':''}>${p.partNumber} — ${p.partName} (Avail: ${partAvailable(p.partNumber)})</option>`).join('');
+
+  openModal(title, `
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="form-group"><label class="form-label">Date</label><input type="date" class="form-input" id="f-date" value="${f?f.date:daysAgo(0)}"></div>
+      <div class="form-group"><label class="form-label">Asset</label><select class="form-select" id="f-asset" onchange="updateFaultTypeOptions()"><option value="">Select asset...</option>${assetOptions}</select></div>
+      <div class="form-group md:col-span-2"><label class="form-label">Fault Type</label><select class="form-select" id="f-type"><option value="">Select type...</option></select></div>
+      <div class="form-group md:col-span-2"><label class="form-label">Description</label><textarea class="form-textarea" id="f-desc">${f?f.description:''}</textarea></div>
+      <div class="form-group"><label class="form-label">Priority</label><select class="form-select" id="f-pri"><option ${f&&f.priority==='Critical'?'selected':''}>Critical</option><option ${f&&f.priority==='High'?'selected':''}>High</option><option ${!f||f.priority==='Medium'?'selected':''}>Medium</option><option ${f&&f.priority==='Low'?'selected':''}>Low</option></select></div>
+      <div class="form-group"><label class="form-label">Status</label><select class="form-select" id="f-status"><option ${f&&f.status==='Open'?'selected':''}>Open</option><option ${f&&f.status==='In Progress'?'selected':''}>In Progress</option><option ${f&&f.status==='Closed'?'selected':''}>Closed</option><option ${f&&f.status==='Cancelled'?'selected':''}>Cancelled</option></select></div>
+      <div class="form-group"><label class="form-label">Engineer</label><select class="form-select" id="f-eng"><option value="">Unassigned</option>${engOptions}</select></div>
+      <div class="form-group"><label class="form-label">Part Number</label><select class="form-select" id="f-part"><option value="">None</option>${partOptions}</select></div>
+      <div class="form-group"><label class="form-label">Qty Used</label><input type="number" class="form-input" id="f-qty" min="0" value="${f?f.qtyUsed:0}"></div>
+      <div class="form-group"><label class="form-label">Reporter Name</label><input type="text" class="form-input" id="f-reporter" value="${f?f.reporterName:''}"></div>
+    </div>
+  `, `<button class="btn btn-secondary" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="saveFault('${ticketNo||''}')">${isEdit?'Update':'Create'} Ticket</button>`);
+
+  if(f && f.assetCode) updateFaultTypeOptions(f.faultType);
+}
+
+function updateFaultTypeOptions(selected=null){
+  const assetCode = document.getElementById('f-asset').value;
+  const sel = document.getElementById('f-type');
+  const asset = getAsset(assetCode);
+  let types = ALL_FAULT_TYPES;
+  if(asset) types = FAULT_TYPES_BY_CATEGORY[asset.category] || ALL_FAULT_TYPES;
+  sel.innerHTML = `<option value="">Select type...</option>` + types.map(t=>`<option ${t===selected?'selected':''}>${t}</option>`).join('');
+}
+
+function saveFault(ticketNo){
+  const date = document.getElementById('f-date').value;
+  const assetCode = document.getElementById('f-asset').value;
+  const faultType = document.getElementById('f-type').value;
+  const description = document.getElementById('f-desc').value;
+  const priority = document.getElementById('f-pri').value;
+  const status = document.getElementById('f-status').value;
+  const engineer = document.getElementById('f-eng').value || null;
+  const partNumber = document.getElementById('f-part').value || null;
+  const qtyUsed = parseInt(document.getElementById('f-qty').value)||0;
+  const reporterName = document.getElementById('f-reporter').value;
+
+  if(!date||!assetCode||!faultType){toast('Please fill Date, Asset, and Fault Type','error');return;}
+
+  const asset = getAsset(assetCode);
+  const unitCost = partNumber ? getPartCost(partNumber) : 0;
+
+  if(ticketNo){
+    const f = DB.faults.find(x=>x.ticketNo===ticketNo);
+    // Revert old part usage
+    if(f.partNumber){const op=DB.spareParts.find(p=>p.partNumber===f.partNumber);if(op)op.qtyUsed=Math.max(0,op.qtyUsed-f.qtyUsed);}
+    Object.assign(f,{date,assetCode,faultType,description,priority,status,engineer,partNumber,qtyUsed,unitCost,assetName:asset?asset.assetName:'',faultCategory:faultToCategory(faultType),reporterName});
+    // Apply new part usage
+    if(partNumber){const np=DB.spareParts.find(p=>p.partNumber===partNumber);if(np)np.qtyUsed+=qtyUsed;}
+    toast('Ticket updated');
+  } else {
+    const no = String(DB.nextTicket++).padStart(3,'0');
+    const tNo = `TKT-${date.replace(/-/g,'')}-${no}`;
+    DB.faults.push({ticketNo:tNo,date,assetCode,faultType,description,priority,status,engineer,partNumber,qtyUsed,unitCost,poRef:null,assetName:asset?asset.assetName:'',faultCategory:faultToCategory(faultType),reporterName,userCode:''});
+    if(partNumber){const np=DB.spareParts.find(p=>p.partNumber===partNumber);if(np)np.qtyUsed+=qtyUsed;}
+    toast('Ticket created: '+tNo);
+  }
+  saveDB(); closeModal(); navigate('faults');
+}
+
+/* ============================================================
+   WORK ORDERS
+   ============================================================ */
+function renderWorkOrders(){
+  return `
+  <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+    <div><h2 style="font-size:24px;font-weight:700">Work Orders</h2><p style="color:var(--text-muted);font-size:13px;margin-top:4px">${DB.workOrders.length} orders</p></div>
+    <div class="flex gap-2">
+      <button class="btn btn-primary" onclick="openWOModal()"><i class="fa-solid fa-plus"></i> New WO</button>
+    </div>
+  </div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <div style="overflow-x:auto;max-height:65vh;overflow-y:auto">
+      <table class="data-table">
+        <thead><tr><th>WO No</th><th>Ticket</th><th>Asset</th><th>Engineer</th><th>Action Taken</th><th>Status</th><th>Close Date</th><th>Cost</th><th>Actions</th></tr></thead>
+        <tbody>${DB.workOrders.map(w=>`<tr>
+          <td style="font-family:'Space Grotesk'">${w.woNo}</td>
+          <td>${w.ticketNo}</td><td>${w.assetCode}</td><td>${getEngineer(w.engineer)}</td>
+          <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis">${w.actionTaken}</td>
+          <td>${badge(w.status,w.status.toLowerCase().replace(' ',''))}</td>
+          <td>${w.closeDate||'—'}</td><td>${w.lineCost?fmtEgp(w.lineCost):'—'}</td>
+          <td class="no-print"><button class="btn btn-secondary btn-sm btn-icon" onclick="openWOModal('${w.woNo}')" title="Edit"><i class="fa-solid fa-pen"></i></button></td>
+        </tr>`).join('')}</tbody>
+      </table>
+    </div>
+  </div>`;
+}
+
+function openWOModal(woNo=null){
+  const w = woNo ? DB.workOrders.find(x=>x.woNo===woNo) : null;
+  const isEdit = !!w;
+  const ticketOpts = DB.faults.map(f=>`<option value="${f.ticketNo}" ${w&&w.ticketNo===f.ticketNo?'selected':''}>${f.ticketNo} — ${f.assetCode}</option>`).join('');
+  const engOpts = DB.engineers.filter(e=>e.name).map(e=>`<option value="${e.code}" ${w&&w.engineer===e.code?'selected':''}>${e.name}</option>`).join('');
+
+  openModal(isEdit?`Edit ${w.woNo}`:'New Work Order',`
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="form-group"><label class="form-label">Ticket No</label><select class="form-select" id="wo-ticket" onchange="autoFillWO()"><option value="">Select ticket...</option>${ticketOpts}</select></div>
+      <div class="form-group"><label class="form-label">Engineer</label><select class="form-select" id="wo-eng"><option value="">Select...</option>${engOpts}</select></div>
+      <div class="form-group md:col-span-2"><label class="form-label">Action Taken</label><textarea class="form-textarea" id="wo-action">${w?w.actionTaken:''}</textarea></div>
+      <div class="form-group"><label class="form-label">Status</label><select class="form-select" id="wo-status"><option ${w&&w.status==='Open'?'selected':''}>Open</option><option ${w&&w.status==='In Progress'?'selected':''}>In Progress</option><option ${w&&w.status==='Closed'?'selected':''}>Closed</option></select></div>
+      <div class="form-group"><label class="form-label">Close Date</label><input type="date" class="form-input" id="wo-close" value="${w?w.closeDate||'':''}"></div>
+    </div>
+  `,`<button class="btn btn-secondary" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="saveWO('${woNo||''}')">${isEdit?'Update':'Create'}</button>`);
+
+  if(w) autoFillWO(w.ticketNo);
+}
+
+function autoFillWO(preSelect=null){
+  const tNo = preSelect || document.getElementById('wo-ticket').value;
+  const t = DB.faults.find(f=>f.ticketNo===tNo);
+  if(t){
+    if(!preSelect) document.getElementById('wo-eng').value = t.engineer||'';
+  }
+}
+
+function saveWO(woNo){
+  const ticketNo = document.getElementById('wo-ticket').value;
+  const engineer = document.getElementById('wo-eng').value;
+  const actionTaken = document.getElementById('wo-action').value;
+  const status = document.getElementById('wo-status').value;
+  const closeDate = document.getElementById('wo-close').value || null;
+  if(!ticketNo){toast('Select a ticket','error');return;}
+  const t = DB.faults.find(f=>f.ticketNo===ticketNo);
+  if(!t){toast('Ticket not found','error');return;}
+
+  if(woNo){
+    const w = DB.workOrders.find(x=>x.woNo===woNo);
+    Object.assign(w,{ticketNo,assetCode:t.assetCode,engineer,actionTaken,status,closeDate,faultType:t.faultType,partNumber:t.partNumber,qtyUsed:t.qtyUsed,lineCost:t.unitCost*t.qtyUsed,poRef:t.poRef});
+    toast('Work order updated');
+  } else {
+    const no = String(DB.nextWO++).padStart(3,'0');
+    DB.workOrders.push({woNo:`WO-${no}`,ticketNo,assetCode:t.assetCode,engineer,actionTaken,status,closeDate,faultType:t.faultType,partNumber:t.partNumber,qtyUsed:t.qtyUsed,lineCost:t.unitCost*t.qtyUsed,poRef:t.poRef});
+    toast('Work order created: WO-'+no);
+  }
+  saveDB(); closeModal(); navigate('workorders');
+}
+
+/* ============================================================
+   PM SCHEDULE
+   ============================================================ */
+function renderPMSchedule(){
+  const rows = DB.assets.map(a=>{
+    const pm = pmStatus(a.lastPM, a.pmFrequency);
+    return `<tr>
+      <td style="font-family:'Space Grotesk'">${a.assetCode}</td>
+      <td>${a.assetName}</td>
+      <td>${a.category}</td>
+      <td>${a.lastPM||'<span style="color:var(--text-muted)">Not set</span>'}</td>
+      <td>${pm.nextPM||'—'}</td>
+      <td>${a.pmFrequency}d</td>
+      <td>${badge(pm.status,pm.status.toLowerCase())}</td>
+      <td style="color:${pm.daysLeft<0?'var(--danger)':pm.daysLeft<=14?'var(--warning)':'var(--text-secondary)'}; font-weight:600">${pm.daysLeft<0?pm.daysLeft+'d':pm.daysLeft+'d'}</td>
+      <td class="no-print"><button class="btn btn-secondary btn-sm" onclick="setLastPM('${a.assetCode}')"><i class="fa-solid fa-calendar-check"></i> Set PM</button></td>
+    </tr>`;
+  });
+
+  return `
+  <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+    <div><h2 style="font-size:24px;font-weight:700">PM Schedule</h2><p style="color:var(--text-muted);font-size:13px;margin-top:4px">Preventive maintenance for all ${DB.assets.length} assets</p></div>
+    <div class="flex gap-2">
+      <select id="pm-filter" class="form-select" style="width:140px" onchange="filterPM()"><option value="">All Status</option><option>OK</option><option>Due</option><option>Overdue</option></select>
+    </div>
+  </div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <div style="overflow-x:auto;max-height:65vh;overflow-y:auto">
+      <table class="data-table" id="pm-table">
+        <thead><tr><th>Asset Code</th><th>Asset Name</th><th>Category</th><th>Last PM</th><th>Next PM</th><th>Frequency</th><th>Status</th><th>Days Left</th><th>Actions</th></tr></thead>
+        <tbody>${rows.join('')}</tbody>
+      </table>
+    </div>
+  </div>`;
+}
+
+function filterPM(){
+  const v = document.getElementById('pm-filter').value.toLowerCase();
+  document.querySelectorAll('#pm-table tbody tr').forEach(tr=>{
+    tr.style.display = (!v || tr.textContent.toLowerCase().includes(v)) ? '' : 'none';
+  });
+}
+
+function setLastPM(assetCode){
+  openModal('Set Last PM Date',`
+    <p style="margin-bottom:12px;color:var(--text-secondary)">${assetCode}</p>
+    <div class="form-group"><label class="form-label">Last PM Date</label><input type="date" class="form-input" id="pm-date" value="${daysAgo(0)}"></div>
+  `,`<button class="btn btn-secondary" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="savePM('${assetCode}')">Save</button>`);
+}
+function savePM(assetCode){
+  const d = document.getElementById('pm-date').value;
+  const a = DB.assets.find(x=>x.assetCode===assetCode);
+  if(a){a.lastPM=d;saveDB();closeModal();navigate('pm_schedule');toast('PM date updated for '+assetCode);}
+}
+
+/* ============================================================
+   SPARE PARTS
+   ============================================================ */
+function renderSpareParts(){
+  let totalValue=0, totalConsumed=0, totalReorder=0;
+  const rows = DB.spareParts.map(p=>{
+    const avail = p.initialQty - p.qtyUsed;
+    const value = avail * p.unitCost;
+    const consumed = p.qtyUsed * p.unitCost;
+    const status = stockStatus(p);
+    totalValue += value; totalConsumed += consumed;
+    if(status==='Reorder'||status==='Out') totalReorder += Math.max(0,Math.ceil(p.minQty*1.5)-avail)*p.unitCost;
+    return `<tr>
+      <td>${p.partName}</td><td style="font-family:'Space Grotesk'">${p.partNumber}</td><td>${p.supplier}</td>
+      <td>${p.initialQty}</td><td>${p.qtyUsed}</td>
+      <td style="font-weight:600;color:${avail<=0?'var(--danger)':avail<=p.minQty?'var(--warning)':'var(--text-primary)'}">${avail}</td>
+      <td>${p.minQty}</td><td>${fmtEgp(p.unitCost)}</td><td>${fmtEgp(value)}</td>
+      <td>${badge(status==='OK'?'OK':status==='Out'?'Out':'Reorder', status.toLowerCase())}</td>
+      <td class="no-print"><button class="btn btn-secondary btn-sm btn-icon" onclick="openPartModal('${p.partNumber}')" title="Edit"><i class="fa-solid fa-pen"></i></button> <button class="btn btn-danger btn-sm btn-icon" onclick="deletePart('${p.partNumber}')" title="Delete"><i class="fa-solid fa-trash"></i></button></td>
+    </tr>`;
+  });
+
+  return `
+  <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+    <div><h2 style="font-size:24px;font-weight:700">Spare Parts Inventory</h2><p style="color:var(--text-muted);font-size:13px;margin-top:4px">${DB.spareParts.length} parts tracked</p></div>
+    <button class="btn btn-primary" onclick="openPartModal()"><i class="fa-solid fa-plus"></i> Add Part</button>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+    <div class="card" style="border-left:3px solid var(--accent)"><div style="font-size:11px;color:var(--text-muted)">Total Inventory Value</div><div style="font-size:22px;font-weight:700;color:var(--accent);margin-top:4px">${fmtEgp(totalValue)}</div></div>
+    <div class="card" style="border-left:3px solid var(--warning)"><div style="font-size:11px;color:var(--text-muted)">Total Parts Consumed</div><div style="font-size:22px;font-weight:700;color:var(--warning);margin-top:4px">${fmtEgp(totalConsumed)}</div></div>
+    <div class="card" style="border-left:3px solid var(--danger)"><div style="font-size:11px;color:var(--text-muted)">Est. Reorder Cost</div><div style="font-size:22px;font-weight:700;color:var(--danger);margin-top:4px">${fmtEgp(totalReorder)}</div></div>
+  </div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <div style="overflow-x:auto">
+      <table class="data-table" id="spareparts-table">
+        <thead><tr><th>Part Name</th><th>Part Number</th><th>Supplier</th><th>Initial</th><th>Used</th><th>Available</th><th>Min Qty</th><th>Unit Cost</th><th>Stock Value</th><th>Status</th><th class="no-print">Actions</th></tr></thead>
+        <tbody>${rows.join('')}</tbody>
+      </table>
+    </div>
+  </div>`;
+}
+
+
+
+function openPartModal(partNumber=null){
+  const p = partNumber ? DB.spareParts.find(x=>x.partNumber===partNumber) : null;
+  const isEdit = !!p;
+  const title = isEdit ? `Edit Part ${p.partNumber}` : 'Add New Part';
+
+  openModal(title, `
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="form-group"><label class="form-label">Part Name</label><input type="text" class="form-input" id="sp-name" value="${p?p.partName:''}" placeholder="e.g. Handpiece Bearing"></div>
+      <div class="form-group"><label class="form-label">Part Number</label><input type="text" class="form-input" id="sp-number" value="${p?p.partNumber:''}" ${isEdit?'readonly':''} placeholder="e.g. HP-BR-002"></div>
+      <div class="form-group"><label class="form-label">Supplier</label><input type="text" class="form-input" id="sp-supplier" value="${p?p.supplier:''}" placeholder="e.g. Sirona"></div>
+      <div class="form-group"><label class="form-label">Initial Qty</label><input type="number" class="form-input" id="sp-initqty" min="0" value="${p?p.initialQty:0}"></div>
+      <div class="form-group"><label class="form-label">Qty Used</label><input type="number" class="form-input" id="sp-qtyused" min="0" value="${p?p.qtyUsed:0}"></div>
+      <div class="form-group"><label class="form-label">Min Qty</label><input type="number" class="form-input" id="sp-minqty" min="0" value="${p?p.minQty:1}"></div>
+      <div class="form-group"><label class="form-label">Unit Cost (EGP)</label><input type="number" class="form-input" id="sp-unitcost" min="0" value="${p?p.unitCost:0}"></div>
+    </div>
+  `, `<button class="btn btn-secondary" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="savePart('${partNumber||''}')">${isEdit?'Update':'Add'} Part</button>`);
+}
+
+function savePart(partNumber){
+  const partName = document.getElementById('sp-name').value.trim();
+  const pNumber = document.getElementById('sp-number').value.trim();
+  const supplier = document.getElementById('sp-supplier').value.trim();
+  const initialQty = parseInt(document.getElementById('sp-initqty').value)||0;
+  const qtyUsed = parseInt(document.getElementById('sp-qtyused').value)||0;
+  const minQty = parseInt(document.getElementById('sp-minqty').value)||0;
+  const unitCost = parseInt(document.getElementById('sp-unitcost').value)||0;
+
+  if(!partName||!pNumber){toast('Please fill Part Name and Part Number','error');return;}
+
+  if(partNumber){
+    const p = DB.spareParts.find(x=>x.partNumber===partNumber);
+    Object.assign(p,{partName,partNumber:pNumber,supplier,initialQty,qtyUsed,minQty,unitCost});
+    toast('Part updated');
+  } else {
+    if(DB.spareParts.find(x=>x.partNumber===pNumber)){toast('Part number already exists','error');return;}
+    DB.spareParts.push({partName,partNumber:pNumber,supplier,initialQty,qtyUsed,minQty,unitCost});
+    toast('Part added: '+pNumber);
+  }
+  saveDB(); closeModal(); navigate('spareparts');
+}
+
+function deletePart(partNumber){
+  const faultRefs = DB.faults.filter(f=>f.partNumber===partNumber).length;
+  const poRefs = DB.purchaseOrders.filter(po=>po.partNumber===partNumber).length;
+  const total = faultRefs + poRefs;
+  if(total > 0){
+    toast('Cannot delete: part is used in '+total+' fault(s)/purchase order(s)','error');
+    return;
+  }
+  if(!confirm('Delete part '+partNumber+'? This cannot be undone.')) return;
+  DB.spareParts = DB.spareParts.filter(p=>p.partNumber!==partNumber);
+  saveDB(); navigate('spareparts'); toast('Part deleted');
+}
+
+/* ============================================================
+   PURCHASE ORDERS
+   ============================================================ */
+function renderPurchaseOrders(){
+  const pending = DB.purchaseOrders.filter(p=>p.poStatus==='Pending').length;
+  const ordered = DB.purchaseOrders.filter(p=>p.poStatus==='Ordered').length;
+  const delivered = DB.purchaseOrders.filter(p=>p.poStatus==='Delivered').length;
+  const totalCost = DB.purchaseOrders.reduce((s,p)=>s+p.totalCost,0);
+
+  return `
+  <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+    <div><h2 style="font-size:24px;font-weight:700">Purchase Orders</h2><p style="color:var(--text-muted);font-size:13px;margin-top:4px">Spare parts procurement register</p></div>
+    <button class="btn btn-primary" onclick="openPOModal()"><i class="fa-solid fa-plus"></i> New PO</button>
+  </div>
+  <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+    <div class="card"><div style="font-size:11px;color:var(--text-muted)">Total POs</div><div style="font-size:20px;font-weight:700;margin-top:4px">${DB.purchaseOrders.length}</div></div>
+    <div class="card"><div style="font-size:11px;color:var(--text-muted)">Pending</div><div style="font-size:20px;font-weight:700;color:var(--warning);margin-top:4px">${pending}</div></div>
+    <div class="card"><div style="font-size:11px;color:var(--text-muted)">Ordered</div><div style="font-size:20px;font-weight:700;color:var(--info);margin-top:4px">${ordered}</div></div>
+    <div class="card"><div style="font-size:11px;color:var(--text-muted)">Delivered</div><div style="font-size:20px;font-weight:700;color:var(--success);margin-top:4px">${delivered}</div></div>
+    <div class="card"><div style="font-size:11px;color:var(--text-muted)">Total Cost</div><div style="font-size:20px;font-weight:700;color:var(--accent);margin-top:4px">${fmtEgp(totalCost)}</div></div>
+  </div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <div style="overflow-x:auto">
+      <table class="data-table">
+        <thead><tr><th>PO Number</th><th>Date</th><th>Part Number</th><th>Part Name</th><th>Supplier</th><th>Qty</th><th>Unit Cost</th><th>Total</th><th>Status</th><th>Expected</th><th>Actions</th></tr></thead>
+        <tbody>${DB.purchaseOrders.map(p=>`<tr>
+          <td style="font-family:'Space Grotesk'">${p.poNumber}</td><td>${p.dateRaised}</td><td>${p.partNumber}</td><td>${p.partName}</td><td>${p.supplier}</td>
+          <td>${p.qtyOrdered}</td><td>${fmtEgp(p.unitCost)}</td><td>${fmtEgp(p.totalCost)}</td>
+          <td>${badge(p.poStatus,p.poStatus.toLowerCase())}</td><td>${p.expectedDelivery||'—'}</td>
+          <td class="no-print"><button class="btn btn-secondary btn-sm btn-icon" onclick="openPOModal('${p.poNumber}')" title="Edit"><i class="fa-solid fa-pen"></i></button></td>
+        </tr>`).join('')}</tbody>
+      </table>
+    </div>
+  </div>`;
+}
+
+function openPOModal(poNo=null){
+  const p = poNo ? DB.purchaseOrders.find(x=>x.poNumber===poNo) : null;
+  const isEdit = !!p;
+  const partOpts = DB.spareParts.map(sp=>`<option value="${sp.partNumber}" ${p&&p.partNumber===sp.partNumber?'selected':''}>${sp.partNumber} — ${sp.partName}</option>`).join('');
+  openModal(isEdit?`Edit ${p.poNumber}`:'New Purchase Order',`
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="form-group"><label class="form-label">Date Raised</label><input type="date" class="form-input" id="po-date" value="${p?p.dateRaised:daysAgo(0)}"></div>
+      <div class="form-group"><label class="form-label">Part Number</label><select class="form-select" id="po-part" onchange="autoFillPO()"><option value="">Select...</option>${partOpts}</select></div>
+      <div class="form-group"><label class="form-label">Part Name</label><input type="text" class="form-input" id="po-pname" value="${p?p.partName:''}" readonly></div>
+      <div class="form-group"><label class="form-label">Supplier</label><input type="text" class="form-input" id="po-supplier" value="${p?p.supplier:''}" readonly></div>
+      <div class="form-group"><label class="form-label">Qty Ordered</label><input type="number" class="form-input" id="po-qty" min="1" value="${p?p.qtyOrdered:1}" oninput="calcPOTotal()"></div>
+      <div class="form-group"><label class="form-label">Unit Cost (EGP)</label><input type="number" class="form-input" id="po-ucost" value="${p?p.unitCost:0}" oninput="calcPOTotal()"></div>
+      <div class="form-group"><label class="form-label">Total Cost</label><input type="text" class="form-input" id="po-total" value="${p?fmtEgp(p.totalCost):'0 EGP'}" readonly></div>
+      <div class="form-group"><label class="form-label">Expected Delivery</label><input type="date" class="form-input" id="po-expdel" value="${p?p.expectedDelivery:''}"></div>
+      <div class="form-group"><label class="form-label">PO Status</label><select class="form-select" id="po-status"><option ${p&&p.poStatus==='Pending'?'selected':''}>Pending</option><option ${p&&p.poStatus==='Ordered'?'selected':''}>Ordered</option><option ${p&&p.poStatus==='Delivered'?'selected':''}>Delivered</option></select></div>
+      <div class="form-group"><label class="form-label">Notes</label><input type="text" class="form-input" id="po-notes" value="${p?p.notes||'':''}"></div>
+    </div>
+  `,`<button class="btn btn-secondary" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="savePO('${poNo||''}')">${isEdit?'Update':'Create'}</button>`);
+  if(p) autoFillPO();
+}
+
+function autoFillPO(){
+  const pn = document.getElementById('po-part').value;
+  const sp = DB.spareParts.find(s=>s.partNumber===pn);
+  if(sp){document.getElementById('po-pname').value=sp.partName;document.getElementById('po-supplier').value=sp.supplier;document.getElementById('po-ucost').value=sp.unitCost;calcPOTotal();}
+}
+function calcPOTotal(){
+  const q=parseInt(document.getElementById('po-qty').value)||0;
+  const u=parseInt(document.getElementById('po-ucost').value)||0;
+  document.getElementById('po-total').value=fmtEgp(q*u);
+}
+
+function savePO(poNo){
+  const dateRaised=document.getElementById('po-date').value;
+  const partNumber=document.getElementById('po-part').value;
+  const partName=document.getElementById('po-pname').value;
+  const supplier=document.getElementById('po-supplier').value;
+  const qtyOrdered=parseInt(document.getElementById('po-qty').value)||0;
+  const unitCost=parseInt(document.getElementById('po-ucost').value)||0;
+  const totalCost=qtyOrdered*unitCost;
+  const expectedDelivery=document.getElementById('po-expdel').value;
+  const poStatus=document.getElementById('po-status').value;
+  const notes=document.getElementById('po-notes').value;
+  if(!partNumber){toast('Select a part','error');return;}
+
+  if(poNo){
+    const p=DB.purchaseOrders.find(x=>x.poNumber===poNo);
+    Object.assign(p,{dateRaised,partNumber,partName,supplier,qtyOrdered,unitCost,totalCost,expectedDelivery,poStatus,notes});
+    toast('PO updated');
+  } else {
+    const no=String(DB.nextPO++).padStart(3,'0');
+    const num=`PO-${dateRaised.replace(/-/g,'')}-${no}`;
+    DB.purchaseOrders.push({poNumber:num,dateRaised,partNumber,partName,supplier,qtyOrdered,unitCost,totalCost,poStatus,expectedDelivery,actualDelivery:null,faultTicketRef:null,notes});
+    toast('PO created: '+num);
+  }
+  saveDB();closeModal();navigate('purchaseorders');
+}
+
+/* ============================================================
+   SEARCH
+   ============================================================ */
+function renderSearch(){
+  const opts = DB.assets.map(a=>`<option value="${a.assetCode}">${a.assetCode} — ${a.assetName}</option>`).join('');
+  return `
+  <div class="mb-6"><h2 style="font-size:24px;font-weight:700">Asset History & Search</h2><p style="color:var(--text-muted);font-size:13px;margin-top:4px">Look up any asset to see details and fault history</p></div>
+  <div class="card mb-6">
+    <div class="flex gap-3 items-end flex-wrap">
+      <div class="form-group" style="flex:1;min-width:250px"><label class="form-label">Asset Code</label><select class="form-select" id="search-asset" onchange="doSearch()"><option value="">Select asset...</option>${opts}</select></div>
+    </div>
+  </div>
+  <div id="search-results"></div>`;
+}
+
+function doSearch(){
+  const code = document.getElementById('search-asset').value;
+  const res = document.getElementById('search-results');
+  if(!code){res.innerHTML='';return;}
+  const a = getAsset(code);
+  if(!a){res.innerHTML='<p>Asset not found</p>';return;}
+  const pm = pmStatus(a.lastPM, a.pmFrequency);
+  const faults = DB.faults.filter(f=>f.assetCode===code);
+  const wos = DB.workOrders.filter(w=>w.assetCode===code);
+  const openF = faults.filter(f=>f.status!=='Closed').length;
+  const closedF = faults.filter(f=>f.status==='Closed').length;
+
+  res.innerHTML = `
+  <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6">
+    <div class="card text-center"><div style="font-size:24px;font-weight:700;color:var(--accent)">${faults.length}</div><div style="font-size:11px;color:var(--text-muted)">Total Faults</div></div>
+    <div class="card text-center"><div style="font-size:24px;font-weight:700;color:var(--warning)">${openF}</div><div style="font-size:11px;color:var(--text-muted)">Open</div></div>
+    <div class="card text-center"><div style="font-size:24px;font-weight:700;color:var(--success)">${closedF}</div><div style="font-size:11px;color:var(--text-muted)">Closed</div></div>
+    <div class="card text-center"><div style="font-size:24px;font-weight:700;color:var(--info)">${wos.length}</div><div style="font-size:11px;color:var(--text-muted)">Work Orders</div></div>
+    <div class="card text-center"><div>${badge(pm.status,pm.status.toLowerCase())}</div><div style="font-size:11px;color:var(--text-muted);margin-top:4px">PM: ${pm.daysLeft}d</div></div>
+  </div>
+  <div class="card mb-6">
+    <h3 style="font-size:14px;font-weight:700;margin-bottom:12px">Asset Details</h3>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4" style="font-size:13px">
+      <div><span style="color:var(--text-muted)">Asset Name</span><div style="font-weight:600;margin-top:2px">${a.assetName}</div></div>
+      <div><span style="color:var(--text-muted)">Category</span><div style="font-weight:600;margin-top:2px">${a.category}</div></div>
+      <div><span style="color:var(--text-muted)">Model</span><div style="font-weight:600;margin-top:2px">${a.model}</div></div>
+      <div><span style="color:var(--text-muted)">Team</span><div style="font-weight:600;margin-top:2px">${a.team}</div></div>
+      <div><span style="color:var(--text-muted)">Status</span><div style="margin-top:2px">${badge(a.status,'active')}</div></div>
+      <div><span style="color:var(--text-muted)">PM Frequency</span><div style="font-weight:600;margin-top:2px">${a.pmFrequency} days</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <h3 style="font-size:14px;font-weight:700;margin-bottom:12px">Fault History (${faults.length})</h3>
+    ${faults.length?`<table class="data-table"><thead><tr><th>Ticket</th><th>Date</th><th>Type</th><th>Description</th><th>Priority</th><th>Status</th><th>Engineer</th></tr></thead>
+    <tbody>${faults.map(f=>`<tr><td style="font-family:'Space Grotesk'">${f.ticketNo}</td><td>${f.date}</td><td style="max-width:180px;overflow:hidden;text-overflow:ellipsis">${f.faultType}</td><td style="max-width:200px;overflow:hidden;text-overflow:ellipsis">${f.description}</td><td>${badge(f.priority,f.priority.toLowerCase())}</td><td>${badge(f.status,f.status.toLowerCase().replace(' ',''))}</td><td>${getEngineer(f.engineer)}</td></tr>`).join('')}</tbody></table>`:'<p style="color:var(--text-muted);font-size:13px">No faults recorded for this asset.</p>'}
+  </div>`;
+}
+
+/* ============================================================
+   ENGINEERS & KPI SCORECARDS
+   ============================================================ */
+function renderEngineers(){
+  // Compute KPIs
+  const kpis = DB.engineers.filter(e=>e.name).map(eng=>{
+    const assigned = DB.faults.filter(f=>f.engineer===eng.code);
+    const closed = assigned.filter(f=>f.status==='Closed');
+    const total = assigned.length;
+    const closedCount = closed.length;
+    const closurePct = total ? Math.round(closedCount/total*100) : 0;
+    const avgRes = closed.length ? Math.round(closed.reduce((s,f)=>s+daysBetween(f.date, DB.workOrders.find(w=>w.ticketNo===f.ticketNo)?.closeDate||f.date),0)/closed.length) : 0;
+    const highPri = closed.filter(f=>f.priority==='Critical'||f.priority==='High').length;
+    // PM compliance
+    const pmAssets = DB.assets.filter(a=>a.lastPM);
+    const pmOk = pmAssets.filter(a=>pmStatus(a.lastPM,a.pmFrequency).status==='OK').length;
+    const pmCompliance = pmAssets.length ? Math.round(pmOk/pmAssets.length*100) : 100;
+    const partsCost = assigned.reduce((s,f)=>s+(f.unitCost*f.qtyUsed||0),0);
+    return {...eng, total, closedCount, closurePct, avgRes, highPri, pmCompliance, partsCost};
+  });
+
+  const teamTotal = kpis.reduce((s,k)=>s+k.total,0);
+  const teamClosed = kpis.reduce((s,k)=>s+k.closedCount,0);
+  const teamClosure = teamTotal ? Math.round(teamClosed/teamTotal*100) : 0;
+  const teamAvgRes = kpis.filter(k=>k.avgRes>0).length ? Math.round(kpis.filter(k=>k.avgRes>0).reduce((s,k)=>s+k.avgRes,0)/kpis.filter(k=>k.avgRes>0).length) : 0;
+  const teamCost = kpis.reduce((s,k)=>s+k.partsCost,0);
+
+  function rating(score){
+    if(score>=85) return {label:'Excellent',cls:'rating-excellent'};
+    if(score>=70) return {label:'Strong',cls:'rating-strong'};
+    if(score>=55) return {label:'Average',cls:'rating-average'};
+    if(score>=40) return {label:'Below',cls:'rating-below'};
+    return {label:'Critical',cls:'rating-critical'};
+  }
+
+  function composite(k){
+    // Weighted: closure%*20 + closureVol*20 + speed*15 + highPri*20 + pmComp*15 + cost*10
+    const volScore = Math.min(k.total/5*100,100);
+    const closeScore = k.closurePct;
+    const speedScore = k.avgRes ? Math.max(0, 100 - k.avgRes*5) : 50;
+    const highScore = Math.min(k.highPri/3*100,100);
+    const pmScore = k.pmCompliance;
+    const avgCost = kpis.reduce((s,x)=>s+x.partsCost,0) / (kpis.length||1);
+    const costScore = avgCost ? Math.max(0, 100 - (k.partsCost/avgCost)*50) : 100;
+    return Math.round(volScore*.2 + closeScore*.2 + speedScore*.15 + highScore*.2 + pmScore*.15 + costScore*.1);
+  }
+
+  return `
+  <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+    <div><h2 style="font-size:24px;font-weight:700">Engineers & Performance</h2><p style="color:var(--text-muted);font-size:13px;margin-top:4px">Staff directory with weighted KPI scorecards</p></div>
+    <button class="btn btn-primary" onclick="openEngModal()"><i class="fa-solid fa-plus"></i> Add Engineer</button>
+  </div>
+
+  <!-- Team Rollup -->
+  <div class="card mb-6" style="border-left:3px solid var(--accent)">
+    <h3 style="font-size:14px;font-weight:700;margin-bottom:12px">Team Rollup — MT-412 Clinic 412</h3>
+    <div class="grid grid-cols-2 md:grid-cols-6 gap-4" style="font-size:13px">
+      <div><span style="color:var(--text-muted)">Engineers</span><div style="font-size:20px;font-weight:700;margin-top:2px">${kpis.length}</div></div>
+      <div><span style="color:var(--text-muted)">Total Tickets</span><div style="font-size:20px;font-weight:700;margin-top:2px">${teamTotal}</div></div>
+      <div><span style="color:var(--text-muted)">Closed</span><div style="font-size:20px;font-weight:700;margin-top:2px">${teamClosed}</div></div>
+      <div><span style="color:var(--text-muted)">Closure %</span><div style="font-size:20px;font-weight:700;margin-top:2px">${teamClosure}%</div></div>
+      <div><span style="color:var(--text-muted)">Avg Resolution</span><div style="font-size:20px;font-weight:700;margin-top:2px">${teamAvgRes}d</div></div>
+      <div><span style="color:var(--text-muted)">Total Parts Cost</span><div style="font-size:20px;font-weight:700;margin-top:2px">${fmtEgp(teamCost)}</div></div>
+    </div>
+  </div>
+
+  <!-- Criteria -->
+  <div class="card mb-6">
+    <h3 style="font-size:14px;font-weight:700;margin-bottom:12px">Evaluation Criteria & Weights</h3>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-3" style="font-size:12px">
+      <div style="padding:8px 12px;border-radius:8px;background:var(--bg-secondary)"><span style="color:var(--accent);font-weight:700">20%</span> <span style="color:var(--text-secondary)">Tickets Closed (volume)</span></div>
+      <div style="padding:8px 12px;border-radius:8px;background:var(--bg-secondary)"><span style="color:var(--accent);font-weight:700">20%</span> <span style="color:var(--text-secondary)">Closure Rate %</span></div>
+      <div style="padding:8px 12px;border-radius:8px;background:var(--bg-secondary)"><span style="color:var(--accent);font-weight:700">15%</span> <span style="color:var(--text-secondary)">Avg Resolution Days</span></div>
+      <div style="padding:8px 12px;border-radius:8px;background:var(--bg-secondary)"><span style="color:var(--accent);font-weight:700">20%</span> <span style="color:var(--text-secondary)">High-Priority Handled</span></div>
+      <div style="padding:8px 12px;border-radius:8px;background:var(--bg-secondary)"><span style="color:var(--accent);font-weight:700">15%</span> <span style="color:var(--text-secondary)">PM Compliance %</span></div>
+      <div style="padding:8px 12px;border-radius:8px;background:var(--bg-secondary)"><span style="color:var(--accent);font-weight:700">10%</span> <span style="color:var(--text-secondary)">Cost Discipline</span></div>
+    </div>
+  </div>
+
+  <!-- Scorecards -->
+  <div class="card" style="padding:0;overflow:hidden">
+    <div style="overflow-x:auto">
+      <table class="data-table">
+        <thead><tr><th>Engineer</th><th>Tickets</th><th>Closed</th><th>Closure %</th><th>Avg Res (d)</th><th>High-Pri</th><th>PM %</th><th>Parts Cost</th><th>Score</th><th>Rating</th></tr></thead>
+        <tbody>${kpis.map(k=>{
+          const sc = composite(k);
+          const r = rating(sc);
+          return `<tr>
+            <td style="font-weight:600">${k.name}</td><td>${k.total}</td><td>${k.closedCount}</td>
+            <td>${k.closurePct}%</td><td>${k.avgRes||'—'}</td><td>${k.highPri}</td><td>${k.pmCompliance}%</td>
+            <td>${fmtEgp(k.partsCost)}</td>
+            <td style="font-size:18px;font-weight:700;font-family:'Space Grotesk';color:${r.cls.includes('excellent')?'var(--success)':r.cls.includes('strong')?'var(--info)':r.cls.includes('average')?'var(--warning)':'var(--danger)'}">${sc}</td>
+            <td><span class="${r.cls}" style="font-weight:700">${r.label}</span></td>
+          </tr>`;}).join('')}</tbody>
+      </table>
+    </div>
+  </div>`;
+}
+
+function openEngModal(){
+  const slots = DB.engineers.filter(e=>!e.name);
+  const code = slots.length ? slots[0].code : null;
+  openModal('Add Engineer',`
+    <div class="form-group"><label class="form-label">Engineer Code</label><input type="text" class="form-input" id="eng-code" value="${code||''}" readonly></div>
+    <div class="form-group"><label class="form-label">Engineer Name</label><input type="text" class="form-input" id="eng-name" placeholder="Full name"></div>
+  `,`<button class="btn btn-secondary" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="saveEng()">Save</button>`);
+}
+function saveEng(){
+  const code=document.getElementById('eng-code').value;
+  const name=document.getElementById('eng-name').value.trim();
+  if(!name){toast('Enter a name','error');return;}
+  const eng=DB.engineers.find(e=>e.code===code);
+  if(eng){eng.name=name;saveDB();closeModal();navigate('engineers');toast('Engineer added');}
+  else toast('No available slots','error');
+}
+
+/* ============================================================
+   TEAMS
+   ============================================================ */
+function renderTeams(){
+  return `
+  <div class="mb-6"><h2 style="font-size:24px;font-weight:700">Maintenance Teams</h2><p style="color:var(--text-muted);font-size:13px;margin-top:4px">Team directory</p></div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <table class="data-table">
+      <thead><tr><th>Team Code</th><th>Team Name</th></tr></thead>
+      <tbody>${DB.teams.map(t=>`<tr><td style="font-family:'Space Grotesk'">${t.code}</td><td>${t.name}</td></tr>`).join('')}</tbody>
+    </table>
+  </div>`;
+}
+
+/* ============================================================
+   QR MASTER
+   ============================================================ */
+function renderQRMaster(){
+  const rows = DB.assets.map((a,i)=>{
+    const url = getQRBaseURL() + '?unit=' + a.assetCode;
+    const statusColor = a.status === 'Active' ? 'var(--success)' : 'var(--text-muted)';
+    return `<tr>
+      <td>${i+1}</td>
+      <td style="font-family:'Space Grotesk';font-size:12px">${a.assetCode}</td>
+      <td>${a.assetName}</td>
+      <td>${a.category}</td>
+      <td><span style="color:${statusColor}">${a.status||'Active'}</span></td>
+      <td><canvas id="qr-${i}" width="80" height="80" style="border-radius:6px"></canvas></td>
+      <td style="font-size:11px;color:var(--text-muted);max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${url}</td>
+      <td class="no-print" style="white-space:nowrap">
+        <button class="btn btn-secondary btn-icon" title="View QR" onclick="viewQR(${i})"><i class="fa-solid fa-expand"></i></button>
+        <button class="btn btn-secondary btn-icon" title="Download QR" onclick="downloadQR(${i})"><i class="fa-solid fa-download"></i></button>
+        <button class="btn btn-secondary btn-icon" title="Print Label" onclick="printSingleQRLabel(${i})"><i class="fa-solid fa-print"></i></button>
+        <a href="${url}" target="_blank" class="btn btn-primary btn-icon" title="Open Fault Form via QR"><i class="fa-solid fa-qrcode"></i></a>
+      </td>
+    </tr>`;
+  });
+
+  const qrFaultCount = (DB.faults||[]).filter(f=>f.source==='qr').length;
+  const totalFaults = (DB.faults||[]).length;
+
+  return `
+  <div class="mb-6"><h2 style="font-size:24px;font-weight:700">QR Code Master</h2><p style="color:var(--text-muted);font-size:13px;margin-top:4px">Scan QR on device to open fault report form — tickets appear in CMMS automatically</p></div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4 no-print">
+    <div class="card" style="border-left:3px solid var(--accent)">
+      <div style="font-size:12px;color:var(--text-muted);margin-bottom:4px">Connected Form</div>
+      <div style="font-size:13px;color:var(--text-secondary);word-break:break-all"><code style="font-size:11px">${getQRBaseURL()}</code></div>
+      <p style="font-size:10px;color:var(--text-muted);margin-top:4px">Configure in Setup</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--info)">
+      <div style="font-size:12px;color:var(--text-muted);margin-bottom:4px">QR-Submitted Faults</div>
+      <div style="font-size:24px;font-weight:700;font-family:'Space Grotesk';color:var(--info)">${qrFaultCount} <span style="font-size:12px;color:var(--text-muted);font-weight:400">/ ${totalFaults} total</span></div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--success)">
+      <div style="font-size:12px;color:var(--text-muted);margin-bottom:4px">Assets with QR</div>
+      <div style="font-size:24px;font-weight:700;font-family:'Space Grotesk';color:var(--success)">${DB.assets.length}</div>
+    </div>
+  </div>
+
+  <div class="no-print mb-4" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+    <button class="btn btn-primary" onclick="printAllQRLabels()"><i class="fa-solid fa-print"></i> Print All QR Labels</button>
+    <button class="btn btn-secondary" onclick="downloadAllQR()"><i class="fa-solid fa-file-zipper"></i> Download All QR as PNGs</button>
+    <div style="flex:1"></div>
+    <div style="display:flex;gap:6px;align-items:center">
+      <input type="text" id="qr-lookup" class="form-input" placeholder="Quick lookup: paste asset code or scan..." style="width:260px" onkeydown="if(event.key==='Enter')qrLookup()">
+      <button class="btn btn-secondary" onclick="qrLookup()" title="Look up asset QR"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+  </div>
+
+  <div id="qr-lookup-result" class="mb-4" style="display:none"></div>
+
+  <div class="card" style="padding:0;overflow:hidden">
+    <div style="overflow-x:auto;max-height:65vh;overflow-y:auto">
+      <table class="data-table" id="qr-table">
+        <thead><tr><th>#</th><th>Asset Code</th><th>Asset Name</th><th>Category</th><th>Status</th><th>QR Code</th><th>Form URL</th><th class="no-print">Actions</th></tr></thead>
+        <tbody>${rows.join('')}</tbody>
+      </table>
+    </div>
+  </div>`;
+}
+
+function getQRBaseURL(){
+  try {
+    const saved = localStorage.getItem('clinic412_cmms');
+    if(saved){ const db = JSON.parse(saved); if(db.settings && db.settings.qrBaseURL) return db.settings.qrBaseURL; }
+  } catch(e){}
+  return window.location.origin + '/fault_report.html';
+}
+
+function qrLookup() {
+  const input = document.getElementById('qr-lookup').value.trim().toUpperCase();
+  const resultDiv = document.getElementById('qr-lookup-result');
+  if (!input) { resultDiv.style.display = 'none'; return; }
+
+  // Search by asset code, legacy code, or name
+  const idx = DB.assets.findIndex(a =>
+    a.assetCode.toUpperCase() === input ||
+    (a.legacyCode || '').toUpperCase() === input ||
+    a.assetName.toUpperCase().includes(input)
+  );
+
+  if (idx === -1) {
+    resultDiv.style.display = 'block';
+    resultDiv.innerHTML = `<div class="card" style="border-left:3px solid var(--danger);padding:16px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <i class="fa-solid fa-circle-exclamation" style="color:var(--danger);font-size:18px"></i>
+        <div>
+          <div style="font-size:14px;font-weight:600">Asset not found</div>
+          <div style="font-size:12px;color:var(--text-muted)">No asset matching "${input}" in the register</div>
+        </div>
+      </div>
+    </div>`;
+    return;
+  }
+
+  const a = DB.assets[idx];
+  const url = getQRBaseURL() + '?unit=' + a.assetCode;
+  const assetFaults = DB.faults.filter(f => f.assetCode === a.assetCode);
+  const pm = pmStatus(a.lastPM, a.pmFrequency);
+
+  resultDiv.style.display = 'block';
+  resultDiv.innerHTML = `
+  <div class="card" style="border-left:3px solid var(--accent);padding:0;overflow:hidden">
+    <div style="display:flex;gap:20px;padding:20px;align-items:flex-start;flex-wrap:wrap">
+      <div style="flex-shrink:0;text-align:center">
+        <canvas id="lookup-qr-canvas" width="140" height="140" style="border-radius:8px"></canvas>
+      </div>
+      <div style="flex:1;min-width:200px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <h3 style="font-size:18px;font-weight:700;font-family:'Space Grotesk'">${a.assetCode}</h3>
+          ${badge(a.status, a.status==='Active'?'active':'inactive')}
+          ${badge(pm.status, 'ok')}
+        </div>
+        <p style="font-size:14px;color:var(--text-primary);margin-bottom:2px">${a.assetName}</p>
+        <p style="font-size:12px;color:var(--text-muted);margin-bottom:4px">${a.category} &middot; ${a.model || 'N/A'} &middot; Team: ${a.team || 'N/A'} &middot; PM: ${a.pmFrequency}d</p>
+        <p style="font-size:11px;color:var(--text-muted);margin-bottom:12px">Last PM: ${a.lastPM || 'Never'} &middot; Install: ${a.installDate || 'N/A'}</p>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <a href="${url}" target="_blank" class="btn btn-primary btn-sm"><i class="fa-solid fa-qrcode"></i> Open Fault Form</a>
+          <button class="btn btn-secondary btn-sm" onclick="printSingleQRLabel(${idx})"><i class="fa-solid fa-print"></i> Print Label</button>
+          <button class="btn btn-secondary btn-sm" onclick="downloadQR(${idx})"><i class="fa-solid fa-download"></i> Download QR</button>
+          <button class="btn btn-secondary btn-sm" onclick="openAssetModal('${a.assetCode}')"><i class="fa-solid fa-pen"></i> Edit Asset</button>
+        </div>
+      </div>
+      <div style="flex-shrink:0;min-width:160px">
+        <div style="font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px">Fault History</div>
+        <div style="font-size:22px;font-weight:700;font-family:'Space Grotesk';color:var(--info)">${assetFaults.length}</div>
+        <div style="font-size:10px;color:var(--text-muted);margin-bottom:8px">${assetFaults.filter(f=>f.source==='qr').length} via QR</div>
+        ${assetFaults.length > 0 ? '<div style="font-size:10px;color:var(--text-muted);max-height:80px;overflow-y:auto">' + assetFaults.slice(-5).reverse().map(f =>
+          `<div style="padding:3px 0;border-bottom:1px solid var(--border)">${f.ticketNo} &middot; ${f.status}${f.source==='qr'?' <i class="fa-solid fa-qrcode" style="color:var(--accent)"></i>':''}</div>`
+        ).join('') + '</div>' : '<div style="font-size:11px;color:var(--text-muted)">No faults</div>'}
+      </div>
+    </div>
+  </div>`;
+
+  // Draw QR in lookup card
+  setTimeout(() => {
+    const canvas = document.getElementById('lookup-qr-canvas');
+    if (canvas && typeof QRCode !== 'undefined') {
+      QRCode.toCanvas(canvas, url, { width: 140, margin: 2, color: { dark: '#00E5B8', light: '#0A0F1E' }, errorCorrectionLevel: 'M' });
+    }
+  }, 50);
+}
+
+function drawQRCanvases(){
+  if(typeof QRCode === 'undefined'){
+    console.warn('QRCode library not loaded, using placeholders');
+    drawQRPlaceholders();
+    return;
+  }
+  const base = getQRBaseURL();
+  DB.assets.forEach((a,i)=>{
+    const canvas = document.getElementById(`qr-${i}`);
+    if(!canvas) return;
+    const url = base + '?unit=' + a.assetCode;
+    QRCode.toCanvas(canvas, url, {
+      width: 80, margin: 1,
+      color: { dark: '#00E5B8', light: '#0A0F1E' },
+      errorCorrectionLevel: 'M'
+    }, function(error){
+      if(error){
+        // Fallback: draw placeholder
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#0A0F1E'; ctx.fillRect(0,0,80,80);
+        ctx.fillStyle = '#334155'; ctx.font = '9px sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText('QR Error', 40, 44);
+      }
+    });
+  });
+}
+
+function drawQRPlaceholders(){
+  DB.assets.forEach((a,i)=>{
+    const canvas = document.getElementById(`qr-${i}`);
+    if(!canvas) return;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#0A0F1E'; ctx.fillRect(0,0,80,80);
+    ctx.fillStyle = '#334155'; ctx.font = '8px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText(a.assetCode.substring(a.assetCode.length-3), 40, 44);
+  });
+}
+
+
+/* ---- QR Action Functions ---- */
+function getQRURL(index) {
+  const a = DB.assets[index];
+  if (!a) return '';
+  return getQRBaseURL() + '?unit=' + a.assetCode;
+}
+
+function viewQR(index) {
+  const a = DB.assets[index];
+  if (!a) return;
+  const url = getQRBaseURL() + '?unit=' + a.assetCode;
+  const assetFaults = DB.faults.filter(f => f.assetCode === a.assetCode);
+  const recentFaults = assetFaults.slice(-3).reverse().map(f =>
+    `<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <span>${f.ticketNo}</span>
+      <span>${f.date}</span>
+      ${f.source==='qr'?'<span style="color:var(--accent);font-size:10px"><i class="fa-solid fa-qrcode"></i> QR</span>':'<span style="color:var(--text-muted);font-size:10px">Manual</span>'}
+      <span>${badge(f.status, f.status.toLowerCase().replace(' ',''))}</span>
+    </div>`
+  ).join('') || '<p style="font-size:12px;color:var(--text-muted);padding:8px 0">No faults recorded for this asset</p>';
+
+  const body = `
+    <div style="text-align:center">
+      <canvas id="modal-qr-canvas" width="240" height="240" style="border-radius:12px;margin:0 auto 16px"></canvas>
+      <h3 style="font-size:18px;font-weight:700;margin-bottom:4px">${a.assetCode}</h3>
+      <p style="color:var(--text-muted);font-size:13px;margin-bottom:4px">${a.assetName}</p>
+      <p style="color:var(--text-muted);font-size:11px;margin-bottom:16px">${a.category} · ${a.model || ''} · ${badge(a.status, a.status==='Active'?'active':'inactive')}</p>
+      <code style="background:var(--bg-secondary);padding:6px 12px;border-radius:6px;font-size:11px;word-break:break-all;display:inline-block;max-width:100%">${url}</code>
+      <div style="margin-top:16px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-primary btn-sm" onclick="downloadQR(${index})"><i class="fa-solid fa-download"></i> Download PNG</button>
+        <a href="${url}" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-solid fa-external-link-alt"></i> Open Fault Form</a>
+        <button class="btn btn-secondary btn-sm" onclick="printSingleQRLabel(${index})"><i class="fa-solid fa-print"></i> Print Label</button>
+      </div>
+    </div>
+    <div style="margin-top:20px;border-top:1px solid var(--border);padding-top:16px">
+      <div style="font-size:13px;font-weight:700;margin-bottom:8px;color:var(--text-primary)">Recent Faults (${assetFaults.length} total)</div>
+      ${recentFaults}
+    </div>`;
+  openModal('QR Code — ' + a.assetCode, body);
+  setTimeout(() => {
+    const canvas = document.getElementById('modal-qr-canvas');
+    if (canvas && typeof QRCode !== 'undefined') {
+      QRCode.toCanvas(canvas, url, { width: 240, margin: 2, color: { dark: '#00E5B8', light: '#0A0F1E' }, errorCorrectionLevel: 'M' });
+    }
+  }, 100);
+}
+
+function downloadQR(index) {
+  const a = DB.assets[index];
+  if (!a) return;
+  const url = getQRBaseURL() + '?unit=' + a.assetCode;
+  if (typeof QRCode === 'undefined') { toast('QR library not loaded', 'error'); return; }
+  QRCode.toDataURL(url, { width: 400, margin: 2, color: { dark: '#000000', light: '#FFFFFF' }, errorCorrectionLevel: 'M' }, function(err, dataUrl) {
+    if (err) { toast('Failed to generate QR', 'error'); return; }
+    const link = document.createElement('a');
+    link.download = 'QR-' + a.assetCode + '.png';
+    link.href = dataUrl;
+    link.click();
+    toast('QR downloaded: ' + a.assetCode);
+  });
+}
+
+function downloadAllQR() {
+  if (typeof QRCode === 'undefined') { toast('QR library not loaded', 'error'); return; }
+  let delay = 0;
+  DB.assets.forEach((a, i) => {
+    setTimeout(() => {
+      const url = getQRBaseURL() + '?unit=' + a.assetCode;
+      QRCode.toDataURL(url, { width: 400, margin: 2, color: { dark: '#000000', light: '#FFFFFF' }, errorCorrectionLevel: 'M' }, function(err, dataUrl) {
+        if (err) return;
+        const link = document.createElement('a');
+        link.download = 'QR-' + a.assetCode + '.png';
+        link.href = dataUrl;
+        link.click();
+      });
+    }, delay);
+    delay += 300; // Stagger downloads
+  });
+  toast('Downloading ' + DB.assets.length + ' QR codes...', 'info');
+}
+
+function printSingleQRLabel(index) {
+  if (typeof QRCode === 'undefined') { toast('QR library not loaded', 'error'); return; }
+  const a = DB.assets[index];
+  if (!a) return;
+  const url = getQRBaseURL() + '?unit=' + a.assetCode;
+  let html = '<!DOCTYPE html><html><head><title>QR Label — ' + a.assetCode + '</title>';
+  html += '<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:Arial,sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh;background:#f5f5f5}';
+  html += '@media print{@page{margin:5mm;size:80mm 60mm}body{background:#fff}}';
+  html += '.label{border:2.5px solid #222;border-radius:10px;padding:16px 20px;text-align:center;background:#fff;width:300px}';
+  html += '.label canvas{margin:0 auto 10px;display:block}';
+  html += '.label .code{font-size:16px;font-weight:800;font-family:monospace;letter-spacing:1px}';
+  html += '.label .name{font-size:12px;color:#333;margin-top:4px;font-weight:600}';
+  html += '.label .cat{font-size:10px;color:#666;margin-top:2px}';
+  html += '.label .clinic{font-size:9px;color:#999;margin-top:8px;border-top:1px solid #ddd;padding-top:8px}';
+  html += '.no-print{position:fixed;bottom:20px;left:50%;transform:translateX(-50%)}';
+  html += '</style></head><body>';
+  html += '<div class="label"><canvas id="pqr-single" width="200" height="200"></canvas>';
+  html += '<div class="code">' + a.assetCode + '</div>';
+  html += '<div class="name">' + a.assetName + '</div>';
+  html += '<div class="cat">' + a.category + (a.model ? ' &middot; ' + a.model : '') + '</div>';
+  html += '<div class="clinic">Clinic 412 &middot; Faculty of Oral &amp; Dental Medicine &middot; FUE</div></div>';
+  html += '<div class="no-print"><button onclick="window.print()" style="padding:12px 32px;font-size:15px;cursor:pointer;border:2px solid #333;border-radius:8px;background:#fff;font-weight:600">Print This Label</button></div>';
+  html += '<script>setTimeout(function(){QRCode.toCanvas(document.getElementById("pqr-single"),"' + url.replace(/"/g, '&quot;') + '",{width:200,margin:2,color:{dark:"#000",light:"#fff"},errorCorrectionLevel:"M"});},300);</' + 'script>';
+  html += '</body></html>';
+  const w = window.open('', '_blank');
+  w.document.write(html);
+  w.document.close();
+  w.QRCode = QRCode; // share the already-loaded library with the new window (no CDN needed)
+  toast('Label page opened for ' + a.assetCode, 'info');
+}
+
+function printAllQRLabels() {
+  if (typeof QRCode === 'undefined') { toast('QR library not loaded', 'error'); return; }
+  const base = getQRBaseURL();
+  let html = '<!DOCTYPE html><html><head><title>QR Labels — Clinic 412 CMMS</title>';
+  html += '<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:Arial,sans-serif;padding:12px}';
+  html += '.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}@media print{@page{margin:8mm;size:A4 portrait}.no-print{display:none!important}}';
+  html += '.label{border:2px solid #333;border-radius:8px;padding:10px;text-align:center;page-break-inside:avoid}';
+  html += '.label canvas{margin:0 auto 6px;display:block}.label .code{font-size:11px;font-weight:700;font-family:monospace}';
+  html += '.label .name{font-size:9px;color:#555;margin-top:2px}.label .cat{font-size:8px;color:#888}';
+  html += '.header{text-align:center;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid #333}';
+  html += '.header h1{font-size:16px}.header p{font-size:10px;color:#666}';
+  html += '</style></head><body>';
+  html += '<div class="header no-print"><h1>QR Code Labels — Clinic 412 CMMS</h1><p>Print and attach to each asset</p></div>';
+  html += '<div class="grid">';
+  DB.assets.forEach((a, i) => {
+    html += '<div class="label"><canvas id="pqr-' + i + '" width="120" height="120"></canvas>';
+    html += '<div class="code">' + a.assetCode + '</div>';
+    html += '<div class="name">' + a.assetName + '</div>';
+    html += '<div class="cat">' + a.category + (a.model ? ' · ' + a.model : '') + '</div></div>';
+  });
+  html += '</div>';
+  html += '<div class="no-print" style="text-align:center;margin-top:16px"><button onclick="window.print()" style="padding:10px 24px;font-size:14px;cursor:pointer;border:2px solid #333;border-radius:8px;background:#fff">Print Labels</button></div>';
+  html += '<script>setTimeout(()=>{' +
+    'const base="' + base.replace(/"/g, '&quot;') + '";';
+  DB.assets.forEach((a, i) => {
+    const url = base + '?unit=' + a.assetCode;
+    html += 'QRCode.toCanvas(document.getElementById("pqr-' + i + '"),"' + url.replace(/"/g, '\"') + '",{width:120,margin:1,color:{dark:"#000",light:"#fff"},errorCorrectionLevel:"M"});';
+  });
+  html += '},200);</' + 'script></body></html>';
+
+  const w = window.open('', '_blank');
+  w.document.write(html);
+  w.document.close();
+  w.QRCode = QRCode; // share the already-loaded library with the new window (no CDN needed)
+  toast('QR Labels page opened for printing', 'info');
+}
+
+/* ============================================================
+   PM LIBRARY
+   ============================================================ */
+function renderPMLibrary(){
+  const groups = {};
+  PM_LIBRARY.forEach(f=>{if(!groups[f.deviceType])groups[f.deviceType]=[];groups[f.deviceType].push(f);});
+
+  return `
+  <div class="mb-6"><h2 style="font-size:24px;font-weight:700">PM Library</h2><p style="color:var(--text-muted);font-size:13px;margin-top:4px">Standard fault checklists — ${PM_LIBRARY.length} documented fault types</p></div>
+  ${Object.entries(groups).map(([type, items])=>`
+    <div class="card mb-4">
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:12px;color:var(--accent)">${type} (${items.length})</h3>
+      <table class="data-table">
+        <thead><tr><th>Code</th><th>وصف العطل</th><th>أولوية</th><th>ملاحظات فنية</th></tr></thead>
+        <tbody>${items.map(f=>`<tr>
+          <td style="font-family:'Space Grotesk'">${f.code}</td>
+          <td style="font-weight:500;direction:rtl;text-align:right">${f.desc}</td>
+          <td>${badge(f.priority, f.priority==='طارئة'?'critical':f.priority==='عالية'?'high':f.priority==='متوسطة'?'medium':'low')}</td>
+          <td style="direction:rtl;text-align:right;color:var(--text-muted)">${f.notes}</td>
+        </tr>`).join('')}</tbody>
+      </table>
+    </div>
+  `).join('')}`;
+}
+
+/* ============================================================
+   MGMT BRIEF
+   ============================================================ */
+function renderMgmtBrief(){
+  const s = kpiStats();
+  const closureRate = s.totalFaults ? Math.round(s.closed/s.totalFaults*100) : 0;
+  const avgCost = s.totalFaults ? Math.round(s.totalPartsCost/s.totalFaults) : 0;
+  const startDate = daysAgo(30);
+  const endDate = daysAgo(0);
+
+  // Breakdown by category
+  const catBreak = {};
+  DB.faults.forEach(f=>{
+    const a = getAsset(f.assetCode);
+    const cat = a?a.category:'Unknown';
+    if(!catBreak[cat]) catBreak[cat]={tickets:0,closed:0,open:0,high:0,cost:0};
+    catBreak[cat].tickets++;
+    if(f.status==='Closed') catBreak[cat].closed++;
+    else catBreak[cat].open++;
+    if(f.priority==='High'||f.priority==='Critical') catBreak[cat].high++;
+    catBreak[cat].cost += f.unitCost*f.qtyUsed||0;
+  });
+
+  // Most frequent fault types
+  const typeCounts = {};
+  DB.faults.forEach(f=>{typeCounts[f.faultType]=(typeCounts[f.faultType]||0)+1;});
+  const topTypes = Object.entries(typeCounts).sort((a,b)=>b[1]-a[1]).slice(0,5);
+
+  // Equipment with most faults
+  const assetFaults = {};
+  DB.faults.forEach(f=>{assetFaults[f.assetCode]=(assetFaults[f.assetCode]||0)+1;});
+  const topAssets = Object.entries(assetFaults).sort((a,b)=>b[1]-a[1]).slice(0,5);
+
+  // Engineer activity
+  const engActivity = {};
+  DB.faults.forEach(f=>{
+    const name = getEngineer(f.engineer);
+    if(!engActivity[name]) engActivity[name]={tickets:0,closed:0,high:0,cost:0};
+    engActivity[name].tickets++;
+    if(f.status==='Closed') engActivity[name].closed++;
+    if(f.priority==='High'||f.priority==='Critical') engActivity[name].high++;
+    engActivity[name].cost += f.unitCost*f.qtyUsed||0;
+  });
+
+  // Pending POs
+  const pendingPOs = DB.purchaseOrders.filter(p=>p.poStatus!=='Delivered');
+
+  return `
+  <div class="no-print flex items-center justify-between mb-6">
+    <div><h2 style="font-size:24px;font-weight:700">Maintenance Brief</h2><p style="color:var(--text-muted);font-size:13px;margin-top:4px">Future University in Egypt · Faculty of Dentistry</p></div>
+    <button class="btn btn-secondary" onclick="window.print()"><i class="fa-solid fa-print"></i> Print Brief</button>
+  </div>
+  <div class="print-only print-header">
+    <h1>Clinic 412 — Maintenance Management Brief</h1>
+    <p>Future University in Egypt · Faculty of Dentistry</p>
+  </div>
+  <div class="card mb-6" style="border:2px solid var(--border)">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4" style="font-size:13px">
+      <div><span style="color:var(--text-muted)">Start Date</span><div style="font-weight:600;margin-top:2px">${startDate}</div></div>
+      <div><span style="color:var(--text-muted)">End Date</span><div style="font-weight:600;margin-top:2px">${endDate}</div></div>
+      <div><span style="color:var(--text-muted)">Period Days</span><div style="font-weight:600;margin-top:2px">30</div></div>
+      <div><span style="color:var(--text-muted)">Generated</span><div style="font-weight:600;margin-top:2px">${endDate}</div></div>
+    </div>
+  </div>
+
+  <!-- Headline KPIs -->
+  <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+    <div class="card" style="border-top:3px solid var(--accent)"><div style="font-size:28px;font-weight:700;color:var(--accent)">${s.totalFaults}</div><div style="font-size:11px;color:var(--text-muted);margin-top:4px">Tickets in Period</div></div>
+    <div class="card" style="border-top:3px solid var(--success)"><div style="font-size:28px;font-weight:700;color:var(--success)">${s.closed}</div><div style="font-size:11px;color:var(--text-muted);margin-top:4px">Tickets Closed</div></div>
+    <div class="card" style="border-top:3px solid var(--danger)"><div style="font-size:28px;font-weight:700;color:var(--danger)">${s.highCrit}</div><div style="font-size:11px;color:var(--text-muted);margin-top:4px">High Priority</div></div>
+    <div class="card" style="border-top:3px solid var(--warning)"><div style="font-size:28px;font-weight:700;color:var(--warning)">${fmtEgp(s.totalPartsCost)}</div><div style="font-size:11px;color:var(--text-muted);margin-top:4px">Parts Cost</div></div>
+    <div class="card" style="border-top:3px solid var(--info)"><div style="font-size:28px;font-weight:700;color:var(--info)">${closureRate}%</div><div style="font-size:11px;color:var(--text-muted);margin-top:4px">Closure Rate</div></div>
+  </div>
+  <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+    <div class="card"><div style="font-size:20px;font-weight:700">${DB.workOrders.length}</div><div style="font-size:11px;color:var(--text-muted);margin-top:4px">Work Orders</div></div>
+    <div class="card"><div style="font-size:20px;font-weight:700;color:var(--warning)">${s.pmDue}</div><div style="font-size:11px;color:var(--text-muted);margin-top:4px">PM Due</div></div>
+    <div class="card"><div style="font-size:20px;font-weight:700;color:var(--danger)">${s.pmOverdue}</div><div style="font-size:11px;color:var(--text-muted);margin-top:4px">PM Overdue</div></div>
+    <div class="card"><div style="font-size:20px;font-weight:700;color:var(--warning)">${s.open+s.inProg}</div><div style="font-size:11px;color:var(--text-muted);margin-top:4px">Tickets Open</div></div>
+    <div class="card"><div style="font-size:20px;font-weight:700">${fmtEgp(avgCost)}</div><div style="font-size:11px;color:var(--text-muted);margin-top:4px">Avg Cost / Ticket</div></div>
+  </div>
+
+  <!-- Category Breakdown -->
+  <div class="card mb-6">
+    <h3 style="font-size:14px;font-weight:700;margin-bottom:12px">Maintenance Breakdown by Equipment Type</h3>
+    <table class="data-table"><thead><tr><th>Category</th><th>Tickets</th><th>Closed</th><th>Open</th><th>High Pri</th><th>Parts Cost</th></tr></thead>
+    <tbody>${Object.entries(catBreak).map(([cat,d])=>`<tr><td style="font-weight:600">${cat}</td><td>${d.tickets}</td><td>${d.closed}</td><td>${d.open}</td><td>${d.high}</td><td>${fmtEgp(d.cost)}</td></tr>`).join('')}
+    <tr style="font-weight:700;border-top:2px solid var(--border)"><td>TOTAL</td><td>${s.totalFaults}</td><td>${s.closed}</td><td>${s.open+s.inProg}</td><td>${s.highCrit}</td><td>${fmtEgp(s.totalPartsCost)}</td></tr></tbody></table>
+  </div>
+
+  <!-- Most Frequent Fault Types -->
+  <div class="card mb-6">
+    <h3 style="font-size:14px;font-weight:700;margin-bottom:12px">Most Frequent Fault Types</h3>
+    <table class="data-table"><thead><tr><th>Fault Type</th><th>Tickets</th><th>High Pri</th><th>Cost (EGP)</th></tr></thead>
+    <tbody>${topTypes.map(([type,count])=>{
+      const related = DB.faults.filter(f=>f.faultType===type);
+      const high = related.filter(f=>f.priority==='High'||f.priority==='Critical').length;
+      const cost = related.reduce((s,f)=>s+(f.unitCost*f.qtyUsed||0),0);
+      return `<tr><td style="direction:rtl;text-align:right;max-width:300px">${type}</td><td>${count}</td><td>${high}</td><td>${fmtEgp(cost)}</td></tr>`;
+    }).join('')}</tbody></table>
+  </div>
+
+  <!-- Equipment with Most Faults -->
+  <div class="card mb-6">
+    <h3 style="font-size:14px;font-weight:700;margin-bottom:12px">Equipment with Most Faults</h3>
+    <table class="data-table"><thead><tr><th>Asset Code</th><th>Asset Name</th><th>Tickets</th><th>Open</th><th>Cost (EGP)</th></tr></thead>
+    <tbody>${topAssets.map(([code,count])=>{
+      const a=getAsset(code);
+      const related=DB.faults.filter(f=>f.assetCode===code);
+      const open=related.filter(f=>f.status!=='Closed').length;
+      const cost=related.reduce((s,f)=>s+(f.unitCost*f.qtyUsed||0),0);
+      return `<tr><td style="font-family:'Space Grotesk'">${code}</td><td>${a?a.assetName:''}</td><td>${count}</td><td>${open}</td><td>${fmtEgp(cost)}</td></tr>`;
+    }).join('')}</tbody></table>
+  </div>
+
+  <!-- Engineer Activity -->
+  <div class="card mb-6">
+    <h3 style="font-size:14px;font-weight:700;margin-bottom:12px">Engineer Activity in Period</h3>
+    <table class="data-table"><thead><tr><th>Engineer</th><th>Tickets</th><th>Closed</th><th>High Pri</th><th>Parts Cost (EGP)</th></tr></thead>
+    <tbody>${Object.entries(engActivity).map(([name,d])=>`<tr><td style="font-weight:600">${name}</td><td>${d.tickets}</td><td>${d.closed}</td><td>${d.high}</td><td>${fmtEgp(d.cost)}</td></tr>`).join('')}</tbody></table>
+  </div>
+
+  <!-- Pending POs -->
+  <div class="card mb-6">
+    <h3 style="font-size:14px;font-weight:700;margin-bottom:8px">Pending Purchase Orders</h3>
+    <p style="font-size:12px;color:var(--text-muted);margin-bottom:12px">Parts requiring procurement — Stock Out or Reorder level triggered</p>
+    ${pendingPOs.length?`<table class="data-table"><thead><tr><th>PO Number</th><th>Part Number</th><th>Part Name</th><th>Supplier</th><th>Qty</th><th>Total</th><th>Status</th><th>Expected</th></tr></thead>
+    <tbody>${pendingPOs.map(p=>`<tr><td style="font-family:'Space Grotesk'">${p.poNumber}</td><td>${p.partNumber}</td><td>${p.partName}</td><td>${p.supplier}</td><td>${p.qtyOrdered}</td><td>${fmtEgp(p.totalCost)}</td><td>${badge(p.poStatus,p.poStatus.toLowerCase())}</td><td>${p.expectedDelivery||'—'}</td></tr>`).join('')}</tbody></table>`:'<p style="color:var(--text-muted);font-size:13px">No pending purchase orders.</p>'}
+  </div>
+
+  <!-- PM Policy -->
+  <div class="card">
+    <h3 style="font-size:14px;font-weight:700;margin-bottom:12px">PM Policy</h3>
+    <div style="font-size:13px;color:var(--text-secondary);line-height:1.8">
+      <p>&bull; Dental Units — preventive maintenance every 6 months (180 days).</p>
+      <p>&bull; Sterilisation Equipment (Autoclaves) — preventive maintenance every 3 months (90 days).</p>
+      <p>&bull; X-Ray Imaging — preventive maintenance every 6 months (180 days).</p>
+    </div>
+  </div>
+  <p style="text-align:center;font-size:11px;color:var(--text-muted);margin-top:24px">&copy; Clinic 412 CMMS · Brief generated for the period above · Confidential — internal use only</p>`;
+}
+
+/* ============================================================
+   SETUP
+   ============================================================ */
+function renderSetup(){
+  return `
+  <div class="mb-6"><h2 style="font-size:24px;font-weight:700">Setup & Integration</h2><p style="color:var(--text-muted);font-size:13px;margin-top:4px">Configuration parameters and integration checklist</p></div>
+
+  <div class="card mb-6">
+    <h3 style="font-size:14px;font-weight:700;margin-bottom:12px">Configuration Parameters</h3>
+    <p style="font-size:12px;color:var(--text-muted);margin-bottom:16px">Edit values below after deploying. All linked formulas update automatically.</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="form-group"><label class="form-label">Apps Script URL</label><input type="text" class="form-input" id="setup-gas-url" value="${CONFIG.APPS_SCRIPT_URL}" oninput="setGasUrl(this.value)"><p style="font-size:11px;color:var(--text-muted);margin-top:4px">Must be the exact same URL pasted into fault_report.html. Status: <b>${isConfigured()?'Connected':'Not connected yet'}</b></p></div>
+      <div class="form-group"><label class="form-label">QR Base URL</label><input type="text" class="form-input" id="setup-qr-url" value="${DB.settings?.qrBaseURL || window.location.origin + '/fault_report.html'}" oninput="saveSetting('qrBaseURL',this.value)"><p style="font-size:11px;color:var(--text-muted);margin-top:4px">QR codes encode: BASE_URL?unit=ASSET_CODE — same origin required for localStorage ticket sync</p></div>
+      <div class="form-group"><label class="form-label">Form Query Param</label><input type="text" class="form-input" value="unit"></div>
+      <div class="form-group"><label class="form-label">CSV Publish URL</label><input type="text" class="form-input" value="https://docs.google.com/spreadsheets/d/e/PASTE_KEY/pub?gid=0&single=true&output=csv"></div>
+      <div class="form-group"><label class="form-label">Refresh Minutes</label><input type="number" class="form-input" value="5"></div>
+      <div class="form-group"><label class="form-label">Critical Notify Email</label><input type="email" class="form-input" value="maintenance@fue.edu.eg"></div>
+    </div>
+  </div>
+
+  <div class="card mb-6">
+    <h3 style="font-size:14px;font-weight:700;margin-bottom:12px">Integration Checklist</h3>
+    <div style="font-size:13px;color:var(--text-secondary);line-height:2.2">
+      <p>1. Google Sheet created with Faults / Assets / Engineers tabs</p>
+      <p>2. Apps Script pasted, setupSystem() executed</p>
+      <p>3. Web app deployed (Anyone access) — URL pasted in config</p>
+      <p>4. fault_report.html updated with same URL and uploaded to host</p>
+      <p>5. QR_BASE URL pasted — QR_Master column will populate</p>
+      <p>6. CSV publish link pasted in config</p>
+      <p>7. Power Query connected: Data → From Web → CSV link → Load to Faults</p>
+      <p>8. Refresh schedule set to every 5 minutes</p>
+      <p>9. When a part is Out-of-Stock or Reorder: open PurchaseOrders → add PO row</p>
+      <p>10. Assign PO Number (format: PO-YYYYMMDD-NNN) → status flows automatically</p>
+    </div>
+  </div>
+
+  <div class="card mb-6">
+    <h3 style="font-size:14px;font-weight:700;margin-bottom:12px">System Data</h3>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4" style="font-size:13px">
+      <div><span style="color:var(--text-muted)">Assets</span><div style="font-weight:700;margin-top:2px">${DB.assets.length}</div></div>
+      <div><span style="color:var(--text-muted)">Faults</span><div style="font-weight:700;margin-top:2px">${DB.faults.length}</div></div>
+      <div><span style="color:var(--text-muted)">Work Orders</span><div style="font-weight:700;margin-top:2px">${DB.workOrders.length}</div></div>
+      <div><span style="color:var(--text-muted)">Spare Parts</span><div style="font-weight:700;margin-top:2px">${DB.spareParts.length}</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="font-size:14px;font-weight:700;margin-bottom:12px;color:var(--danger)">Danger Zone</h3>
+    <p style="font-size:12px;color:var(--text-muted);margin-bottom:12px">Reset all system data to factory defaults. This cannot be undone.</p>
+    <button class="btn btn-danger" onclick="resetDB()"><i class="fa-solid fa-triangle-exclamation"></i> Reset All Data</button>
+  </div>`;
+}
+
+/* ============================================================
+   PAGE EVENT ATTACHMENTS
+   ============================================================ */
+function attachPageEvents(page){
+  if(page==='qr_master') setTimeout(drawQRCanvases, 100);
+}
+
+/* ============================================================
+   CLOCK
+   ============================================================ */
+function updateClock(){
+  const now = new Date();
+  document.getElementById('clock').textContent = now.toLocaleString('en-GB',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit'});
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+loadDB();
+buildNav();
+navigate('dashboard');
+updateClock();
+setInterval(updateClock, 1000);
+pullFromServer();
+setInterval(pullFromServer, 20000); // poll every 20s so new QR tickets appear automatically
+
+/* ============================================================
+   CROSS-TAB SYNC — Auto-refresh when fault_report.html writes
+   ============================================================ */
+window.addEventListener('storage', function(e) {
+  if (e.key === 'clinic412_cmms') {
+    try {
+      const newDB = JSON.parse(e.newValue);
+      const oldFaults = (DB.faults || []).length;
+      DB = newDB;
+      const newFaults = (DB.faults || []).length;
+      // If a new fault was added (likely from QR scan), show notification
+      if (newFaults > oldFaults) {
+        const latestFault = DB.faults[DB.faults.length - 1];
+        if (latestFault && latestFault.source === 'qr') {
+          toast('New QR fault: ' + latestFault.ticketNo + ' — ' + latestFault.assetCode, 'info');
+        }
+      }
+      // Refresh current page to show updated data
+      navigate(currentPage);
+      buildNav();
+    } catch(err) { console.warn('Storage sync error:', err); }
+  }
+});
+</script>
+</body>
+</html>
